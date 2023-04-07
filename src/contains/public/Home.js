@@ -1,10 +1,11 @@
 import React from 'react';
-import { Header } from '~/components';
+import { Header, SearchUser } from '~/components';
 
 function Home() {
     return (
         <div>
             <Header />
+            <SearchUser />
         </div>
     );
 }
