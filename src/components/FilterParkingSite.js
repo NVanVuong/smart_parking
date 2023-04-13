@@ -74,7 +74,7 @@ export default function FilterParkingSite({ setPrice, setAvailable, price, avail
             </button>
             {showFilter && (
                 <div className="absolute right-0 z-10 mt-2 w-[500px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div className="my-2 flex h-16 w-full items-center justify-between px-4">
+                    <div className="mt-3 flex h-16 w-full items-center justify-between px-4">
                         <span className="w-24 text-sm">Price: </span>
                         <div className="flex w-full flex-col">
                             <div className="flex justify-between">
@@ -91,7 +91,7 @@ export default function FilterParkingSite({ setPrice, setAvailable, price, avail
                             />
                         </div>
                     </div>
-                    <div className="my-2 flex h-16 items-center justify-center px-4">
+                    <div className="mt-4 flex h-16 items-center justify-center px-4">
                         <span className="w-24 text-sm">Available: </span>
                         <div className="flex h-16 w-full items-center justify-between">
                             <div className="flex w-full flex-col">
@@ -113,7 +113,7 @@ export default function FilterParkingSite({ setPrice, setAvailable, price, avail
                     <div className="mb-3 flex w-full justify-end">
                         <button
                             onClick={() => handleClickSearch()}
-                            className="mr-3 rounded-md bg-blue-main px-4 py-2 text-sm text-white hover:bg-blue-main-hover"
+                            className="mr-4 rounded-md bg-blue-main px-4 py-2 text-sm text-white hover:bg-blue-main-hover"
                         >
                             Search
                         </button>

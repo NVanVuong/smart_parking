@@ -12,11 +12,11 @@ const adminApi = {
     get: (cate, id) => {
         return axiosClient.get(`${category[cate]}/${id}`);
     },
-    create: (cate, data) => {
-        return axiosClient.post(category[cate], data);
+    create: (cate, params = {}) => {
+        return axiosClient.post(category[cate], { ...params });
     },
-    update: (cate, id, data) => {
-        return axiosClient.put(`${category[cate]}/${id}`, data);
+    update: (cate, id, params) => {
+        return axiosClient.patch(`${category[cate]}/${id}`, { ...params });
     },
     delete: (cate, id) => {
         return axiosClient.delete(`${category[cate]}/${id}`);

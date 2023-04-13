@@ -1,9 +1,10 @@
 import { useState, useEffect, Fragment } from 'react';
-import { Plus, Trash, Pencil, CheckCircle, XCircle, Eye } from '@phosphor-icons/react';
+import { Plus, Trash, Pencil, CheckCircle, XCircle, Info } from '@phosphor-icons/react';
 import adminApi, { category } from '~/api/adminApi';
 import Loading from './Loading';
 import SearchAdmin from './SearchAdmin';
 import FilterAccount from './FilterAccount';
+import ModalAccount from './ModalAccount';
 
 function Accounts() {
     const [accounts, setAccounts] = useState([]);
@@ -11,6 +12,9 @@ function Accounts() {
     const [selectedFilter, setSelectedFilter] = useState('');
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
+    const [modeModal, setModeModal] = useState('');
+    const [currentAccount, setCurrentAccount] = useState();
+    const [usernameExist, setUsernameExist] = useState([]);
 
     useEffect(() => {
         getAccounts();
@@ -23,8 +27,17 @@ function Accounts() {
 
     const getAccounts = async () => {
         const response = await adminApi.getAll(category.accounts);
-        setAccounts(response.data.data.accounts);
+        const accounts = response.data.data.accounts;
+        const usernames = accounts.map((account) => account.username);
+        setUsernameExist(usernames);
+        setAccounts(accounts);
         setLoading(false);
+    };
+
+    const handleModal = (modeModal, currentAccount) => {
+        setCurrentAccount(currentAccount);
+        setShowModal(!showModal);
+        setModeModal(modeModal);
     };
 
     const handleFilterChange = (value) => {
@@ -47,37 +60,61 @@ function Accounts() {
         setAccounts(response.data.data.accounts);
     };
 
-    const handleDelete = (id) => {
-        adminApi
-            .delete(category.accounts, id)
-            .then(() => {
-                const updatedAccounts = accounts.filter((site) => site._id !== id);
-                setAccounts(updatedAccounts);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+    const handleSave = async (account) => {
+        const updatedAccount = { ...account };
+        delete updatedAccount.username;
+
+        if (modeModal === 'Add') {
+            await adminApi.create(category.accounts, account);
+        } else if (modeModal === 'Edit') {
+            await adminApi.update(category.accounts, account._id, updatedAccount);
+        }
+
+        await getAccounts();
+        setShowModal(false);
+    };
+
+    const handleDelete = async (id) => {
+        await adminApi.delete(category.accounts, id);
+        await getAccounts();
+        setShowModal(false);
+    };
+
+    const checkUsername = (username) => {
+        return usernameExist.includes(username);
     };
 
     return !loading ? (
         <div className="relative mx-auto min-w-fit flex-grow">
+            <ModalAccount
+                showModal={showModal}
+                setShowModal={setShowModal}
+                modeModal={modeModal}
+                currentAccount={currentAccount}
+                handleSave={handleSave}
+                handleDelete={handleDelete}
+                checkUsername={checkUsername}
+            ></ModalAccount>
             <div className="mb-5 flex h-16 items-center justify-between border-b-2 border-gray-200 focus-within:border-b-[3px] focus-within:border-blue-main focus-within:shadow-md">
                 <SearchAdmin handleInputChange={handleInputChange} handleKeyDown={handleKeyDown} />
                 <FilterAccount selectedFilter={selectedFilter} handleFilterChange={handleFilterChange} />
                 <span className="mx-4 h-9 border"></span>
                 <p className="mr-8 h-6 text-sm font-semibold">nvvuong</p>
             </div>
-            <button className="ml-8 mb-3 flex items-center rounded-md bg-blue-main p-2 text-white transition duration-300 hover:bg-blue-main-hover hover:drop-shadow-lg">
+            <button
+                onClick={() => handleModal('Add', null)}
+                className="ml-8 mb-3 flex items-center rounded-md bg-blue-main p-2 text-white transition duration-300 hover:bg-blue-main-hover hover:drop-shadow-lg"
+            >
                 <Plus size={20} weight="bold" className=" mr-1 drop-shadow-md transition-all duration-500 " />
                 <span className="mr-1 text-sm">Add new</span>
             </button>
             <div className="mx-8 overflow-hidden border-gray-200 shadow sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
+                <table className="min-w-full divide-y divide-gray-200 ">
                     <thead className="bg-gray-50">
                         <tr>
                             <th
                                 scope="col"
-                                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                                className="w-96 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                             >
                                 Name
                             </th>
@@ -101,23 +138,25 @@ function Accounts() {
                             </th>
                             <th
                                 scope="col"
-                                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                                className="w-32 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                             >
                                 Active
                             </th>
                             <th
                                 scope="col"
-                                className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500"
+                                className="w-32 px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500"
                             >
-                                Action
+                                {/* Action */}
                             </th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200 bg-white">
                         {accounts.map((account) => (
-                            <tr key={account._id}>
+                            <tr key={account._id} className="group hover:bg-gray-50">
                                 <td className="whitespace-nowrap px-6 py-4">
-                                    <div className="text-sm font-medium text-gray-900">{account.name}</div>
+                                    <div className="text-sm font-medium text-gray-900 group-hover:text-blue-main">
+                                        {account.name}
+                                    </div>
                                 </td>
                                 <td className="whitespace-nowrap px-6 py-4">
                                     <div className="text-sm text-gray-500">{account.username}</div>
@@ -128,7 +167,7 @@ function Accounts() {
                                 <td className="whitespace-nowrap px-6 py-4">
                                     <div className="text-sm text-gray-500">{account.phone}</div>
                                 </td>
-                                <td className="whitespace-nowrap px-6 py-4">
+                                <td className=" whitespace-nowrap px-6 py-4">
                                     <div
                                         className={`${
                                             account.isActive ? 'bg-green-500' : 'bg-red-500'
@@ -147,16 +186,22 @@ function Accounts() {
                                         )}
                                     </div>
                                 </td>
-                                <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                                    <button className="text-sky-400 transition duration-300 hover:scale-110 hover:drop-shadow-md">
-                                        <Eye size={22} weight="bold" />
+                                <td className="invisible flex items-center justify-end whitespace-nowrap px-6 py-4 text-sm font-medium group-hover:visible">
+                                    <button
+                                        onClick={() => handleModal('View', account)}
+                                        className="text-gray-400 transition duration-300 hover:scale-110 hover:text-sky-400 hover:drop-shadow-md"
+                                    >
+                                        <Info size={22} weight="bold" />
                                     </button>
-                                    <button className="ml-2 text-yellow-400 transition duration-300 hover:scale-110  hover:drop-shadow-md">
+                                    <button
+                                        onClick={() => handleModal('Edit', account)}
+                                        className="ml-2 text-gray-400 transition duration-300 hover:scale-110 hover:text-yellow-400  hover:drop-shadow-md"
+                                    >
                                         <Pencil size={22} weight="bold" />
                                     </button>
                                     <button
-                                        onClick={() => handleDelete(account._id)}
-                                        className="ml-2 text-red-500 transition duration-300 hover:scale-110 hover:drop-shadow-md"
+                                        onClick={() => handleModal('Delete', account)}
+                                        className="ml-2 text-gray-400 transition duration-300 hover:scale-110 hover:text-red-500 hover:drop-shadow-md"
                                     >
                                         <Trash size={22} weight="bold" />
                                     </button>

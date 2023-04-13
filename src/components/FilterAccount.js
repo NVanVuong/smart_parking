@@ -23,13 +23,12 @@ function FilterAccount({ selectedFilter, handleFilterChange }) {
 
     const handleSelectFilter = (value) => {
         handleFilterChange(value);
-        console.log(value);
         setShowFilter(false);
     };
 
     const types = [
         { label: 'All', value: '' },
-        { label: 'Admin', value: 'ad' },
+        { label: 'Admin', value: 'admin' },
         { label: 'User', value: 'user' },
     ];
 
