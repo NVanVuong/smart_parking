@@ -2,10 +2,9 @@ import { Routes, Route } from 'react-router-dom';
 import { path } from '~/ultils/contains';
 import { Admin, Home, Login } from './contains/public';
 
-
 function App() {
     return (
-        <div className="w-creen bg-primary">
+        <div className="bg-primary w-screen">
             <Routes>
                 <Route path={path.HOME} element={<Home />} />
                 <Route path={path.LOGIN} element={<Login />} />
