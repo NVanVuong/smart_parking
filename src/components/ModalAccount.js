@@ -7,7 +7,7 @@ export default function ModalAccount({
     currentAccount,
     handleSave,
     handleDelete,
-    checkUsername,
+    usernameExist,
 }) {
     const [usernameError, setUsernameError] = useState('');
     const accountFields = [
@@ -51,6 +51,10 @@ export default function ModalAccount({
             ],
         },
     ];
+
+    const checkUsername = (username) => {
+        return usernameExist.includes(username);
+    };
 
     const [account, setAccount] = useState({
         name: '',

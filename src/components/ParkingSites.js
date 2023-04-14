@@ -3,15 +3,14 @@ import { Plus, Trash, Pencil, Info } from '@phosphor-icons/react';
 import adminApi, { category } from '~/api/adminApi';
 import SearchAdmin from './SearchAdmin';
 import Loading from './Loading';
-import FilterParkingSite from './FilterParkingSite';
 import ModalParkingSite from './ModalParkingSite';
 
 function ParkingSites() {
     const [parkingSites, setParkingSites] = useState([]);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [loading, setLoading] = useState(true);
-    const [price, setPrice] = useState([0, 50000]);
-    const [available, setAvailable] = useState([0, 500]);
+    const [price, setPrice] = useState([]);
+    const [available, setAvailable] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [modeModal, setModeModal] = useState('');
     const [currentParikingSite, setCurrentParkingSite] = useState();
@@ -24,8 +23,20 @@ function ParkingSites() {
     const getParkingSites = async () => {
         const response = await adminApi.getAll(category.parkingsites);
         const parkingSites = response.data.data.parkingSite;
+
         const names = parkingSites.map((parkingSites) => parkingSites.name);
         setNameExist(names);
+
+        const prices = parkingSites.map((parkingSite) => parkingSite.price);
+        const minPrice = Math.min(...prices);
+        const maxPrice = Math.max(...prices);
+        setPrice([minPrice, maxPrice]);
+
+        const availables = parkingSites.map((parkingSite) => parkingSite.availableSpot);
+        const minAvailable = Math.min(...availables);
+        const maxAvailable = Math.max(...availables);
+        setAvailable([minAvailable, maxAvailable]);
+
         setParkingSites(parkingSites);
         setLoading(false);
     };
@@ -34,21 +45,9 @@ function ParkingSites() {
         setCurrentParkingSite(currentParkingSite);
         setShowModal(!showModal);
         setModeModal(modeModal);
-        console.log(currentParikingSite);
     };
 
-    const handleInputChange = (e) => {
-        setSearchKeyword(e.target.value);
-        if (e.target.value === '') getParkingSites();
-    };
-
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            handleSearch();
-        }
-    };
-
-    const handleSearch = async () => {
+    const handleSearch = async (searchKeyword) => {
         const response = await adminApi.searchParkingSite(
             available[0],
             available[1],
@@ -77,8 +76,7 @@ function ParkingSites() {
             },
         };
         delete parkingSiteUpdated.coordinates;
-        console.log(parkingSiteUpdated);
-        console.log(parkingSiteAdd);
+        delete parkingSiteUpdated.address;
 
         if (modeModal === 'Add') {
             await adminApi.create(category.parkingsites, parkingSiteAdd);
@@ -86,38 +84,35 @@ function ParkingSites() {
             await adminApi.update(category.parkingsites, parkingSiteUpdated._id, parkingSiteUpdated);
         }
 
-        await getParkingSites();
+        modeModal === 'Add' ? await getParkingSites() : await handleSearch(searchKeyword);
         setShowModal(false);
     };
 
     const handleDelete = async (id) => {
         await adminApi.delete(category.parkingsites, id);
-        await getParkingSites();
+        await handleSearch(searchKeyword);
         setShowModal(false);
-    };
-
-    const checkName = (name) => {
-        return nameExist.includes(name);
     };
 
     return !loading ? (
         <div className="mx-auto min-w-fit flex-grow">
             <ModalParkingSite
                 showModal={showModal}
-                setShowModal={setShowModal}
                 modeModal={modeModal}
+                setShowModal={setShowModal}
+                nameExist={nameExist}
                 currentParkingSite={currentParikingSite}
                 handleSave={handleSave}
                 handleDelete={handleDelete}
-                checkName={checkName}
             ></ModalParkingSite>
-            <div className="mb-5 flex h-16 items-center justify-between border-b-2 border-gray-200 focus-within:border-b-[3px] focus-within:border-blue-main focus-within:shadow-md">
-                <SearchAdmin handleInputChange={handleInputChange} handleKeyDown={handleKeyDown} />
-                <FilterParkingSite
-                    setPrice={setPrice}
-                    setAvailable={setAvailable}
+            <div className="mb-5 flex h-16 items-center justify-between border-b-2 border-gray-200 focus-within:border-b-2 focus-within:border-blue-main focus-within:shadow-md">
+                <SearchAdmin
+                    searchKeyword={searchKeyword}
+                    setSearchKeyword={setSearchKeyword}
                     price={price}
+                    setPrice={setPrice}
                     available={available}
+                    setAvailable={setAvailable}
                     handleSearch={handleSearch}
                 />
                 <span className="mx-4 h-9 border"></span>
@@ -125,7 +120,7 @@ function ParkingSites() {
             </div>
             <button
                 onClick={() => handleModal('Add', null)}
-                className="ml-8 mb-3 flex items-center rounded-md bg-blue-main p-2 text-white transition duration-300 hover:bg-blue-main-hover hover:drop-shadow-lg"
+                className="ml-8 mb-3 flex items-center rounded-md bg-blue-main p-2 text-white transition duration-300 hover:bg-blue-main-hover hover:ring-4 hover:ring-blue-main-ring"
             >
                 <Plus size={20} weight="bold" className=" mr-1 drop-shadow-md transition-all duration-500 " />
                 <span className="mr-1 text-sm">Add new</span>

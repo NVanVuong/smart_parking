@@ -6,6 +6,7 @@ module.exports = {
             colors: {
                 'blue-main': '#2ab7df',
                 'blue-main-hover': '#2ab8dfe6',
+                'blue-main-ring': '#2ab8df66',
             },
         },
     },

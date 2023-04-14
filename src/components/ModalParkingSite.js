@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 
 export default function ModalParkingSite({
     showModal,
-    setShowModal,
     modeModal,
+    setShowModal,
+    nameExist,
     currentParkingSite,
     handleSave,
     handleDelete,
-    checkName,
 }) {
     const [nameError, setNameError] = useState('');
     const parkingSiteFields = [
@@ -55,6 +55,9 @@ export default function ModalParkingSite({
             type: 'text',
         },
     ];
+    const checkName = (name, originalName) => {
+        return nameExist.includes(name) && name !== originalName;
+    };
 
     const [parkingSite, setParkingSite] = useState({
         name: '',
@@ -79,22 +82,22 @@ export default function ModalParkingSite({
         }
     }, [currentParkingSite, modeModal]);
 
-    // const handleClickOut = (event) => {
-    //     if (event.target === event.currentTarget) {
-    //         setShowModal(false);
-    //         setNameError('');
-    //         if (modeModal === 'Add') {
-    //             setParkingSite({});
-    //         } else {
-    //             const { location, ...rest } = currentParkingSite || {};
-    //             setParkingSite({
-    //                 ...rest,
-    //                 address: location?.address,
-    //                 coordinates: location?.coordinates,
-    //             });
-    //         }
-    //     }
-    // };
+    const handleClickOut = (event) => {
+        if (event.target === event.currentTarget) {
+            setShowModal(false);
+            setNameError('');
+            if (modeModal === 'Add') {
+                setParkingSite({});
+            } else {
+                const { location, ...rest } = currentParkingSite || {};
+                setParkingSite({
+                    ...rest,
+                    address: location?.address,
+                    coordinates: location?.coordinates,
+                });
+            }
+        }
+    };
 
     const handleClickClose = () => {
         setShowModal(false);
@@ -113,8 +116,9 @@ export default function ModalParkingSite({
 
     const handleBlur = (event) => {
         const { name, value } = event.target;
+        const originalName = parkingSite.name; // lấy tên ban đầu từ state
         if (name === 'name') {
-            if (checkName(value)) {
+            if (checkName(value, originalName)) {
                 event.target.focus();
                 setNameError('This name already exists. Try another');
                 setParkingSite((prevParkingSite) => ({ ...prevParkingSite, [name]: '' }));
@@ -137,7 +141,6 @@ export default function ModalParkingSite({
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // console.log(parkingSite);
         await handleSave(parkingSite);
         setShowModal(false);
         setParkingSite(currentParkingSite ?? {});
@@ -147,8 +150,11 @@ export default function ModalParkingSite({
         <>
             {showModal ? (
                 <>
-                    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-black/25 outline-none focus:outline-none">
-                        <div className="relative my-6 mx-auto w-2/5">
+                    <div
+                        onClick={handleClickOut}
+                        className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-visible bg-black/25 outline-none focus:outline-none"
+                    >
+                        <div className="absolute top-12 mx-auto w-2/5 pb-12">
                             <div className="relative flex w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none">
                                 <div className="flex items-center justify-between rounded-t border-b border-solid border-slate-200 px-6 py-5">
                                     <h4 className="text-xl font-semibold">
@@ -167,7 +173,7 @@ export default function ModalParkingSite({
                                         </span>
                                     </button>
                                 </div>
-                                <form onSubmit={handleSubmit} className="relative w-auto p-6">
+                                <form onSubmit={(e) => handleSubmit(e)} className="relative w-auto p-6">
                                     {modeModal !== 'Delete' ? (
                                         parkingSiteFields.map((field, index) =>
                                             !field.hidden ? (
