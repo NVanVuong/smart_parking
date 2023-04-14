@@ -4,6 +4,7 @@ import adminApi, { category } from '~/api/adminApi';
 import SearchAdmin from './SearchAdmin';
 import Loading from './Loading';
 import ModalParkingSite from './ModalParkingSite';
+import Pagination from './Pagination';
 
 function ParkingSites() {
     const [parkingSites, setParkingSites] = useState([]);
@@ -15,6 +16,13 @@ function ParkingSites() {
     const [modeModal, setModeModal] = useState('');
     const [currentParikingSite, setCurrentParkingSite] = useState();
     const [nameExist, setNameExist] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [parkingSitePerPage] = useState(8);
+    const indexOfLastParkingSite = currentPage * parkingSitePerPage;
+    const indexOfFirstParkingSite = indexOfLastParkingSite - parkingSitePerPage;
+    const totalParkingSites = parkingSites.length;
+    const totalPages = Math.ceil(totalParkingSites / parkingSitePerPage);
+    const currentParikingSites = parkingSites.slice(indexOfFirstParkingSite, indexOfLastParkingSite);
 
     useEffect(() => {
         getParkingSites();
@@ -168,7 +176,7 @@ function ParkingSites() {
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200 bg-white">
-                        {parkingSites.map((parkingSite) => (
+                        {currentParikingSites.map((parkingSite) => (
                             <tr key={parkingSite._id} className="group hover:bg-gray-50">
                                 <td className="whitespace-nowrap px-6 py-4 ">
                                     <div className="text-sm font-medium text-gray-900 group-hover:text-blue-main">
@@ -211,6 +219,14 @@ function ParkingSites() {
                         ))}
                     </tbody>
                 </table>
+            </div>
+            <div className="flex justify-center">
+                <Pagination
+                    items={parkingSites}
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                />
             </div>
         </div>
     ) : (

@@ -4,6 +4,7 @@ import adminApi, { category } from '~/api/adminApi';
 import Loading from './Loading';
 import SearchAdmin from './SearchAdmin';
 import ModalAccount from './ModalAccount';
+import Pagination from './Pagination';
 
 function Accounts() {
     const [accounts, setAccounts] = useState([]);
@@ -14,10 +15,19 @@ function Accounts() {
     const [modeModal, setModeModal] = useState('');
     const [currentAccount, setCurrentAccount] = useState();
     const [usernameExist, setUsernameExist] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [accountsPerPage] = useState(8);
+    const indexOfLastAccount = currentPage * accountsPerPage;
+    const indexOfFirstAccount = indexOfLastAccount - accountsPerPage;
+    const totalAccounts = accounts.length;
+    const totalPages = Math.ceil(totalAccounts / accountsPerPage);
+    const currentAccounts = accounts.slice(indexOfFirstAccount, indexOfLastAccount);
 
     useEffect(() => {
         getAccounts();
     }, []);
+
+    console.log(currentPage);
 
     const getAccounts = async () => {
         const response = await adminApi.getAll(category.accounts);
@@ -28,15 +38,15 @@ function Accounts() {
         setLoading(false);
     };
 
+    const handleSearch = async (searchKeyword) => {
+        const response = await adminApi.searchAccount(searchKeyword, type);
+        setAccounts(response.data.data.accounts);
+    };
+
     const handleModal = (modeModal, currentAccount) => {
         setCurrentAccount(currentAccount);
         setShowModal(!showModal);
         setModeModal(modeModal);
-    };
-
-    const handleSearch = async (searchKeyword) => {
-        const response = await adminApi.searchAccount(searchKeyword, type);
-        setAccounts(response.data.data.accounts);
     };
 
     const handleSave = async (account) => {
@@ -83,12 +93,12 @@ function Accounts() {
             </div>
             <button
                 onClick={() => handleModal('Add', null)}
-                className="ml-8 mb-3 flex items-center rounded-md bg-blue-main p-2 text-white transition duration-300 hover:bg-blue-main-hover hover:ring-4 hover:ring-blue-main-ring"
+                className="ml-8 mb-6 flex items-center rounded-md bg-blue-main p-2 text-white transition duration-300 hover:bg-blue-main-hover hover:ring-4 hover:ring-blue-main-ring"
             >
                 <Plus size={20} weight="bold" className=" mr-1 drop-shadow-md transition-all duration-500 " />
                 <span className="mr-1 text-sm">Add new</span>
             </button>
-            <div className="mx-8 overflow-hidden border-gray-200 shadow sm:rounded-lg">
+            <div className="mx-8 overflow-hidden border border-gray-200 shadow sm:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200 ">
                     <thead className="bg-gray-50">
                         <tr>
@@ -131,7 +141,7 @@ function Accounts() {
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200 bg-white">
-                        {accounts.map((account) => (
+                        {currentAccounts.map((account) => (
                             <tr key={account._id} className="group hover:bg-gray-50">
                                 <td className="whitespace-nowrap px-6 py-4">
                                     <div className="text-sm font-medium text-gray-900 group-hover:text-blue-main">
@@ -190,6 +200,14 @@ function Accounts() {
                         ))}
                     </tbody>
                 </table>
+            </div>
+            <div className="flex justify-center">
+                <Pagination
+                    items={accounts}
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                />
             </div>
         </div>
     ) : (
