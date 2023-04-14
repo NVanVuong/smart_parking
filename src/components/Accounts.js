@@ -3,13 +3,12 @@ import { Plus, Trash, Pencil, CheckCircle, XCircle, Info } from '@phosphor-icons
 import adminApi, { category } from '~/api/adminApi';
 import Loading from './Loading';
 import SearchAdmin from './SearchAdmin';
-import FilterAccount from './FilterAccount';
 import ModalAccount from './ModalAccount';
 
 function Accounts() {
     const [accounts, setAccounts] = useState([]);
     const [searchKeyword, setSearchKeyword] = useState('');
-    const [selectedFilter, setSelectedFilter] = useState('');
+    const [type, setType] = useState('');
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const [modeModal, setModeModal] = useState('');
@@ -19,11 +18,6 @@ function Accounts() {
     useEffect(() => {
         getAccounts();
     }, []);
-
-    useEffect(() => {
-        handleSearch();
-        // eslint-disable-next-line
-    }, [selectedFilter]);
 
     const getAccounts = async () => {
         const response = await adminApi.getAll(category.accounts);
@@ -40,23 +34,8 @@ function Accounts() {
         setModeModal(modeModal);
     };
 
-    const handleFilterChange = (value) => {
-        setSelectedFilter(value);
-    };
-
-    const handleInputChange = (e) => {
-        setSearchKeyword(e.target.value);
-        if (e.target.value === '') getAccounts();
-    };
-
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            handleSearch();
-        }
-    };
-
-    const handleSearch = async () => {
-        const response = await adminApi.searchAccount(searchKeyword, selectedFilter);
+    const handleSearch = async (searchKeyword) => {
+        const response = await adminApi.searchAccount(searchKeyword, type);
         setAccounts(response.data.data.accounts);
     };
 
@@ -70,40 +49,41 @@ function Accounts() {
             await adminApi.update(category.accounts, account._id, updatedAccount);
         }
 
-        await getAccounts();
+        modeModal === 'Add' ? await getAccounts() : await handleSearch(searchKeyword);
         setShowModal(false);
     };
 
     const handleDelete = async (id) => {
         await adminApi.delete(category.accounts, id);
-        await getAccounts();
+        await handleSearch(searchKeyword);
         setShowModal(false);
-    };
-
-    const checkUsername = (username) => {
-        return usernameExist.includes(username);
     };
 
     return !loading ? (
         <div className="relative mx-auto min-w-fit flex-grow">
             <ModalAccount
                 showModal={showModal}
-                setShowModal={setShowModal}
                 modeModal={modeModal}
+                setShowModal={setShowModal}
+                usernameExist={usernameExist}
                 currentAccount={currentAccount}
                 handleSave={handleSave}
                 handleDelete={handleDelete}
-                checkUsername={checkUsername}
             ></ModalAccount>
-            <div className="mb-5 flex h-16 items-center justify-between border-b-2 border-gray-200 focus-within:border-b-[3px] focus-within:border-blue-main focus-within:shadow-md">
-                <SearchAdmin handleInputChange={handleInputChange} handleKeyDown={handleKeyDown} />
-                <FilterAccount selectedFilter={selectedFilter} handleFilterChange={handleFilterChange} />
+            <div className="mb-5 flex h-16 items-center justify-between border-b-2 border-gray-200 focus-within:border-blue-main focus-within:shadow-md ">
+                <SearchAdmin
+                    searchKeyword={searchKeyword}
+                    setSearchKeyword={setSearchKeyword}
+                    type={type}
+                    setType={setType}
+                    handleSearch={handleSearch}
+                />
                 <span className="mx-4 h-9 border"></span>
                 <p className="mr-8 h-6 text-sm font-semibold">nvvuong</p>
             </div>
             <button
                 onClick={() => handleModal('Add', null)}
-                className="ml-8 mb-3 flex items-center rounded-md bg-blue-main p-2 text-white transition duration-300 hover:bg-blue-main-hover hover:drop-shadow-lg"
+                className="ml-8 mb-3 flex items-center rounded-md bg-blue-main p-2 text-white transition duration-300 hover:bg-blue-main-hover hover:ring-4 hover:ring-blue-main-ring"
             >
                 <Plus size={20} weight="bold" className=" mr-1 drop-shadow-md transition-all duration-500 " />
                 <span className="mr-1 text-sm">Add new</span>

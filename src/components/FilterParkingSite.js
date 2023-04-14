@@ -1,13 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
-import { CaretDown } from '@phosphor-icons/react';
+import { useEffect, useRef } from 'react';
+import { SlidersHorizontal } from '@phosphor-icons/react';
 import Slider from '@mui/material/Slider';
 
-const minPrice = 1000;
-const minAvailable = 1;
-
-export default function FilterParkingSite({ setPrice, setAvailable, price, available, handleSearch }) {
-    const [showFilter, setShowFilter] = useState(false);
+export default function FilterParkingSite({ showFilter, setShowFilter, price, setPrice, available, setAvailable }) {
     const filterRef = useRef(null);
+    const maxPrice = 20000;
+    const maxAvailable = 1500;
+    const minPrice = 1000;
+    const minAvailable = 1;
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -19,58 +19,45 @@ export default function FilterParkingSite({ setPrice, setAvailable, price, avail
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
-    }, [filterRef]);
+    }, [filterRef, setShowFilter]);
 
     const handleShowFilter = () => {
         setShowFilter(!showFilter);
     };
 
-    const handleChangePrice = (event, newValue, activeThumb) => {
+    const handleSliderChange = (event, newValue, activeThumb, minVal, maxVal, setVal) => {
         if (!Array.isArray(newValue)) {
             return;
         }
-        if (newValue[1] - newValue[0] < minPrice) {
+        const range = newValue[1] - newValue[0];
+        if (range < minVal) {
             if (activeThumb === 0) {
-                const clamped = Math.min(newValue[0], 50000 - minPrice);
-                setPrice([clamped, clamped + minPrice]);
+                const clamped = Math.min(newValue[0], maxVal - minVal);
+                setVal([clamped, clamped + minVal]);
             } else {
-                const clamped = Math.max(newValue[1], minPrice);
-                setPrice([clamped - minPrice, clamped]);
+                const clamped = Math.max(newValue[1], minVal);
+                setVal([clamped - minVal, clamped]);
             }
         } else {
-            setPrice(newValue);
+            setVal(newValue);
         }
+    };
+
+    const handleChangePrice = (event, newValue, activeThumb) => {
+        handleSliderChange(event, newValue, activeThumb, minPrice, maxPrice, setPrice);
     };
 
     const handleChangeAvailable = (event, newValue, activeThumb) => {
-        if (!Array.isArray(newValue)) {
-            return;
-        }
-        if (newValue[1] - newValue[0] < minAvailable) {
-            if (activeThumb === 0) {
-                const clamped = Math.min(newValue[0], 500 - minAvailable);
-                setAvailable([clamped, clamped + minAvailable]);
-            } else {
-                const clamped = Math.max(newValue[1], minAvailable);
-                setAvailable([clamped - minAvailable, clamped]);
-            }
-        } else {
-            setAvailable(newValue);
-        }
+        handleSliderChange(event, newValue, activeThumb, minAvailable, maxAvailable, setAvailable);
     };
 
-    const handleClickSearch = () => {
-        handleSearch();
-        setShowFilter(false);
-    };
     return (
-        <div ref={filterRef} className="relative h-8 text-left">
+        <div ref={filterRef} className="relative h-full text-left">
             <button
                 onClick={handleShowFilter}
-                className="flex w-full items-center justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                className="flex h-full w-full items-center justify-center gap-x-1.5 rounded-md border-2 bg-white p-2 font-semibold text-blue-main duration-300 hover:ring-4  hover:ring-blue-main-ring"
             >
-                Filter
-                <CaretDown size={18} className="-mr-1 text-gray-400" aria-hidden="true" />
+                <SlidersHorizontal size={24} weight="bold" />
             </button>
             {showFilter && (
                 <div className="absolute right-0 z-10 mt-2 w-[500px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
@@ -82,7 +69,7 @@ export default function FilterParkingSite({ setPrice, setAvailable, price, avail
                                 <span className="text-sm">{price[1]}đ</span>
                             </div>
                             <Slider
-                                max={50000}
+                                max={maxPrice}
                                 step={1000}
                                 value={price}
                                 onChange={handleChangePrice}
@@ -91,7 +78,7 @@ export default function FilterParkingSite({ setPrice, setAvailable, price, avail
                             />
                         </div>
                     </div>
-                    <div className="mt-4 flex h-16 items-center justify-center px-4">
+                    <div className="mt-4 mb-2 flex h-16 items-center justify-center px-4">
                         <span className="w-24 text-sm">Available: </span>
                         <div className="flex h-16 w-full items-center justify-between">
                             <div className="flex w-full flex-col">
@@ -100,7 +87,7 @@ export default function FilterParkingSite({ setPrice, setAvailable, price, avail
                                     <span className="text-sm">{available[1]} </span>
                                 </div>
                                 <Slider
-                                    max={500}
+                                    max={maxAvailable}
                                     step={10}
                                     value={available}
                                     onChange={handleChangeAvailable}
@@ -109,14 +96,6 @@ export default function FilterParkingSite({ setPrice, setAvailable, price, avail
                                 />
                             </div>
                         </div>
-                    </div>
-                    <div className="mb-3 flex w-full justify-end">
-                        <button
-                            onClick={() => handleClickSearch()}
-                            className="mr-4 rounded-md bg-blue-main px-4 py-2 text-sm text-white hover:bg-blue-main-hover"
-                        >
-                            Search
-                        </button>
                     </div>
                 </div>
             )}
