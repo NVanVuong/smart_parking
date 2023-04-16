@@ -154,7 +154,11 @@ export default function ModalParkingSite({
                         onClick={handleClickOut}
                         className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-visible bg-black/25 outline-none focus:outline-none"
                     >
-                        <div className="absolute top-12 mx-auto w-2/5 pb-12">
+                        <div
+                            className={`${
+                                modeModal === 'View' && 'absolute top-12 pb-12'
+                            } mx-auto flex w-5/6 items-center md:w-2/5`}
+                        >
                             <div className="relative flex w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none">
                                 <div className="flex items-center justify-between rounded-t border-b border-solid border-slate-200 px-6 py-5">
                                     <h4 className="text-xl font-semibold">
@@ -197,8 +201,8 @@ export default function ModalParkingSite({
                                                             className={`${
                                                                 field.name === 'name' && field.error !== ''
                                                                     ? 'focus:ring-red-500'
-                                                                    : 'focus:ring-blue-main'
-                                                            } mt-1 block h-8 w-full rounded-md border border-gray-200 shadow-sm focus:outline-none focus:ring  focus:ring-opacity-70 disabled:bg-gray-50`}
+                                                                    : 'focus:ring-blue-main-ring'
+                                                            } mt-1 block h-8 w-full rounded-md border border-gray-200 shadow-sm focus:outline-none focus:ring-4  focus:ring-opacity-70 disabled:bg-gray-50`}
                                                             disabled={modeModal === 'View'}
                                                             autoComplete="off"
                                                             required
@@ -220,7 +224,7 @@ export default function ModalParkingSite({
                                     )}
                                     <div className="mt-6 flex items-center justify-end rounded-b">
                                         <button
-                                            className="background-transparent rounded px-6 py-3 text-sm font-bold uppercase text-red-500 outline-none transition-all duration-150 ease-linear hover:bg-gray-50 hover:shadow-lg focus:outline-none"
+                                            className="background-transparent rounded px-6 py-3 text-sm font-bold uppercase text-red-500 outline-none transition-all duration-200 ease-linear hover:ring-4 hover:ring-gray-200 focus:outline-none"
                                             type="button"
                                             onClick={handleClickClose}
                                         >
@@ -229,7 +233,7 @@ export default function ModalParkingSite({
                                         {modeModal !== 'View' &&
                                             (modeModal === 'Delete' ? (
                                                 <button
-                                                    className={`${'bg-red-500'} ml-2 rounded px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none active:bg-emerald-600`}
+                                                    className={`${'bg-red-500'} ml-2 rounded px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-200 ease-linear hover:ring-4 hover:ring-red-400 focus:outline-none active:bg-red-400`}
                                                     type="button"
                                                     onClick={() => handleDelete(parkingSite._id)}
                                                 >
@@ -238,8 +242,10 @@ export default function ModalParkingSite({
                                             ) : (
                                                 <button
                                                     className={`${
-                                                        modeModal === 'Add' ? 'bg-blue-main' : 'bg-yellow-400'
-                                                    } ml-2  rounded px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none active:bg-emerald-600`}
+                                                        modeModal === 'Add'
+                                                            ? 'bg-blue-main hover:ring-blue-main-ring active:bg-blue-main-ring'
+                                                            : 'bg-yellow-400 hover:ring-yellow-200 active:bg-yellow-200'
+                                                    } ml-2 rounded px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-200 ease-linear hover:ring-4 focus:outline-none`}
                                                     type="submit"
                                                 >
                                                     Save
