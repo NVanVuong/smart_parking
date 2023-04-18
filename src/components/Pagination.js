@@ -17,6 +17,7 @@ function Pagination({ items, totalPages, currentPage, setCurrentPage }) {
             newCurrentPage = currentPage;
         }
         setCurrentPage(newCurrentPage);
+        // eslint-disable-next-line
     }, [items.length]);
 
     const renderPageNumbers = () => {

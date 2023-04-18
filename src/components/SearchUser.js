@@ -1,9 +1,10 @@
 import React from 'react';
-import { MapPin, MagnifyingGlass, ArrowRight, PencilSimple } from '@phosphor-icons/react';
+import { MapPin, MagnifyingGlass } from '@phosphor-icons/react';
+import { BiCurrentLocation } from 'react-icons/bi';
 
 function SearchUser() {
     return (
-        <div className="flex h-[70px] items-center bg-[#1b3764]">
+        <div className="flex h-[70px] items-center bg-[#1b3764] py-4">
             <div className="mb-[5px] flex px-[15px]">
                 <MapPin
                     className="mt-[10px] h-[30px] border-b-[1px] border-[#fff]"
@@ -23,27 +24,7 @@ function SearchUser() {
                     weight="bold"
                 />
             </div>
-            <div className="ml-[10px] flex items-center text-white">
-                <div>
-                    <p className="mt-[5px] text-xs font-medium">ARRIVE AFTER</p>
-                    <div className="mt-[5px] flex items-center text-sm font-bold">
-                        <p>TUE, MAR 14</p>
-                        <span className="mx-[10px]"> | </span>
-                        <p>3:00 PM</p>
-                        <PencilSimple size={16} color="#fff" weight="fill" className="ml-[15px]" />
-                    </div>
-                </div>
-                <ArrowRight size={22} color="#fff" weight="bold" className="mx-[40px]" />
-                <div>
-                    <p className="mt-[5px] text-xs font-medium">EXIT BEFORE</p>
-                    <div className="mt-[5px] flex items-center text-sm font-bold">
-                        <p>TUE, MAR 14 </p>
-                        <span className="mx-[10px]"> | </span>
-                        <p> 4:00 PM</p>
-                        <PencilSimple size={16} color="#fff" weight="fill" className="ml-[15px]" />
-                    </div>
-                </div>
-            </div>
+            <BiCurrentLocation className="h-full w-auto px-1 py-2 text-xl text-white" />
         </div>
     );
 }

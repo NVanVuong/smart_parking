@@ -241,7 +241,7 @@ export default function ModalAccount({
                                                         modeModal === 'Add'
                                                             ? 'bg-blue-main hover:ring-blue-main-ring active:bg-blue-main-ring'
                                                             : 'bg-yellow-400 hover:ring-yellow-200 active:bg-yellow-200'
-                                                    } ml-2 rounded px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-200 ease-linear hover:ring-4  focus:outline-none active:bg-emerald-600`}
+                                                    } ml-2 rounded px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-200 ease-linear hover:ring-4  focus:outline-none active:bg-blue-main-ring`}
                                                     type="submit"
                                                 >
                                                     Save

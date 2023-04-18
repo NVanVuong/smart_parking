@@ -1,11 +1,12 @@
 import React from 'react';
-import { Header, SearchUser } from '~/components';
+import { Header, SearchUser, MapContainer } from '~/components';
 
 function Home() {
     return (
-        <div>
+        <div className="flex h-screen flex-col">
             <Header />
             <SearchUser />
+            <MapContainer />
         </div>
     );
 }

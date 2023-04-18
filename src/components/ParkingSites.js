@@ -68,10 +68,14 @@ function ParkingSites() {
 
     const handleSave = async (parkingSite) => {
         const { lat, lng, location, ...rest } = parkingSite;
+        let coordinatesArray = [];
+        if (typeof parkingSite.coordinates === 'string') {
+            coordinatesArray = parkingSite.coordinates.split(',').map(Number).reverse();
+        }
         const parkingSiteAdd = {
             ...rest,
-            lgn: parkingSite.coordinates[0],
-            lat: parkingSite.coordinates[1],
+            lng: coordinatesArray[0],
+            lat: coordinatesArray[1],
         };
         delete parkingSiteAdd.coordinates;
 
@@ -86,6 +90,9 @@ function ParkingSites() {
         delete parkingSiteUpdated.coordinates;
         delete parkingSiteUpdated.address;
 
+        console.log(parkingSite);
+        console.log(parkingSiteAdd);
+        console.log(parkingSiteUpdated);
         if (modeModal === 'Add') {
             await adminApi.create(category.parkingsites, parkingSiteAdd);
         } else if (modeModal === 'Edit') {
@@ -223,7 +230,7 @@ function ParkingSites() {
                     </tbody>
                 </table>
             </div>
-            <div class="flex justify-center">
+            <div className="flex justify-center">
                 <Pagination
                     items={parkingSites}
                     totalPages={totalPages}
