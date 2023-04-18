@@ -4,6 +4,7 @@ import reduxStore from './redux';
 import './index.css';
 import App from '~/App';
 import { Provider } from 'react-redux';
+import { AuthProvider } from '~/hooks/auth';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -13,7 +14,9 @@ root.render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
             <BrowserRouter>
-                <App />
+                <AuthProvider>
+                    <App />
+                </AuthProvider>
             </BrowserRouter>
         </PersistGate>
     </Provider>,
