@@ -7,9 +7,10 @@ export default function ModalAccount({
     currentAccount,
     handleSave,
     handleDelete,
-    usernameExist,
+    exist,
 }) {
-    const [usernameError, setUsernameError] = useState('');
+    const [error, setError] = useState('');
+    const [errorInput, setErrorInput] = useState('');
     const accountFields = [
         {
             label: 'Id',
@@ -26,7 +27,7 @@ export default function ModalAccount({
             label: 'Username',
             name: 'username',
             type: 'text',
-            error: usernameError,
+            error: error,
             hidden: modeModal === 'Edit',
         },
 
@@ -40,6 +41,7 @@ export default function ModalAccount({
             label: 'Phone',
             name: 'phone',
             type: 'text',
+            error: error,
         },
         {
             label: 'Type',
@@ -52,8 +54,8 @@ export default function ModalAccount({
         },
     ];
 
-    const checkUsername = (username) => {
-        return usernameExist.includes(username);
+    const checkExist = (value, list) => {
+        return list.includes(value);
     };
 
     const [account, setAccount] = useState({
@@ -81,27 +83,29 @@ export default function ModalAccount({
     const handleClickOut = (event) => {
         if (event.target === event.currentTarget) {
             setShowModal(false);
-            setUsernameError('');
+            setError('');
             setAccount(modeModal === 'Add' ? {} : currentAccount ?? {});
         }
     };
 
     const handleClickClose = () => {
         setShowModal(false);
-        setUsernameError('');
+        setError('');
         setAccount(modeModal === 'Add' ? {} : currentAccount ?? {});
     };
 
     const handleBlur = (event) => {
         const { name, value } = event.target;
-        if (name === 'username') {
-            if (checkUsername(value)) {
+        if (name === 'username' || name === 'phone') {
+            if (checkExist(value, exist[name])) {
                 event.target.focus();
-                setUsernameError('This username already exists. Try another');
+                setError(`${name === 'username' ? 'This username' : 'This phone'} already exists. Try another`);
+                setErrorInput(name);
                 setAccount((prevAccount) => ({ ...prevAccount, [name]: '' }));
             } else {
                 setAccount((prevAccount) => ({ ...prevAccount, [name]: value }));
-                setUsernameError('');
+                setError('');
+                setErrorInput('');
             }
         } else {
             setAccount((prevAccount) => ({ ...prevAccount, [name]: value }));
@@ -131,7 +135,7 @@ export default function ModalAccount({
                         onClick={handleClickOut}
                         className="fixed inset-0 z-50 flex items-center overflow-y-auto overflow-x-hidden bg-black/25 outline-none focus:outline-none"
                     >
-                        <div className="relative my-6 mx-auto w-1/3">
+                        <div className="relative my-6 mx-auto w-4/5 md:w-1/3">
                             <div className="relative flex w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none">
                                 <div className="flex items-center justify-between rounded-t border-b border-solid border-slate-200 px-6 py-5">
                                     <h4 className="text-xl font-semibold">
@@ -169,7 +173,7 @@ export default function ModalAccount({
                                                             onChange={handleChange}
                                                             className={`${
                                                                 modeModal === 'View' && 'appearance-none'
-                                                            } mt-1 block h-8 w-full rounded-md border border-gray-200  shadow-sm focus:outline-none focus:ring focus:ring-blue-main focus:ring-opacity-70 disabled:bg-gray-50`}
+                                                            } mt-1 block h-8 w-full rounded-md border border-gray-200 shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-main-ring focus:ring-opacity-70 disabled:bg-gray-50`}
                                                             disabled={modeModal === 'View'}
                                                         >
                                                             {field.options.map((option) => (
@@ -188,15 +192,17 @@ export default function ModalAccount({
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 className={`${
-                                                                    field.name === 'username' && field.error !== ''
+                                                                    (field.name === 'username' ||
+                                                                        field.name === 'phone') &&
+                                                                    field.error
                                                                         ? 'focus:ring-red-500'
-                                                                        : 'focus:ring-blue-main'
-                                                                } mt-1 block h-8 w-full rounded-md border border-gray-200 shadow-sm focus:outline-none focus:ring  focus:ring-opacity-70 disabled:bg-gray-50`}
+                                                                        : 'focus:ring-blue-main-ring'
+                                                                } mt-1 block h-8 w-full rounded-md border border-gray-200 shadow-sm  focus:outline-none focus:ring-4 focus:ring-opacity-70 disabled:bg-gray-50`}
                                                                 disabled={modeModal === 'View'}
                                                                 autoComplete="off"
                                                                 required
                                                             />
-                                                            {field.error && (
+                                                            {field.error && field.name === errorInput && (
                                                                 <div className="mt-1 text-sm text-red-500">
                                                                     {field.error}
                                                                 </div>
@@ -214,7 +220,7 @@ export default function ModalAccount({
                                     )}
                                     <div className="mt-6 flex items-center justify-end rounded-b">
                                         <button
-                                            className="background-transparent rounded px-6 py-3 text-sm font-bold uppercase text-red-500 outline-none transition-all duration-150 ease-linear hover:bg-gray-50 hover:shadow-lg focus:outline-none"
+                                            className="background-transparent rounded px-6 py-3 text-sm font-bold uppercase text-red-500 outline-none transition-all duration-200 ease-linear hover:ring-4 hover:ring-gray-200 focus:outline-none"
                                             type="button"
                                             onClick={handleClickClose}
                                         >
@@ -223,7 +229,7 @@ export default function ModalAccount({
                                         {modeModal !== 'View' &&
                                             (modeModal === 'Delete' ? (
                                                 <button
-                                                    className={`${'bg-red-500'} ml-2 rounded px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none active:bg-emerald-600`}
+                                                    className={`${'bg-red-500'} ml-2 rounded px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-200 ease-linear hover:ring-4 hover:ring-red-400 focus:outline-none active:bg-red-400`}
                                                     type="button"
                                                     onClick={() => handleDelete(account._id)}
                                                 >
@@ -232,8 +238,10 @@ export default function ModalAccount({
                                             ) : (
                                                 <button
                                                     className={`${
-                                                        modeModal === 'Add' ? 'bg-blue-main' : 'bg-yellow-400'
-                                                    } ml-2  rounded px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none active:bg-emerald-600`}
+                                                        modeModal === 'Add'
+                                                            ? 'bg-blue-main hover:ring-blue-main-ring active:bg-blue-main-ring'
+                                                            : 'bg-yellow-400 hover:ring-yellow-200 active:bg-yellow-200'
+                                                    } ml-2 rounded px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-200 ease-linear hover:ring-4  focus:outline-none active:bg-blue-main-ring`}
                                                     type="submit"
                                                 >
                                                     Save

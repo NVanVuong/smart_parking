@@ -29,6 +29,12 @@ const adminApi = {
     searchAccount: (keyword, type) => {
         return axiosClient.get(`accounts?keyword=${keyword}&type=${type}`);
     },
+    getMyReservation: () => {
+        return axiosClient.get(`/reservation/myreserve`);
+    },
+    bookReservation: (params = {}) => {
+        return axiosClient.post('/reservation', { ...params });
+    },
 };
 
 export default adminApi;

@@ -1,11 +1,7 @@
 function Loading() {
     return (
-        <div
-            className="m-auto h-10 w-10 animate-spin rounded-full border-4 border-current border-t-transparent text-blue-main"
-            role="status"
-            aria-label="loading"
-        >
-            <span className="sr-only">Loading...</span>
+        <div className="fixed inset-0 flex items-center justify-center">
+            <div className="h-10 w-10 animate-spin rounded-full border-4 border-current border-t-transparent text-blue-main"></div>
         </div>
     );
 }

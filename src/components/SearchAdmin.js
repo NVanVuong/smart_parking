@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { MagnifyingGlass, X } from '@phosphor-icons/react';
 import FilterAccount from './FilterAccount';
 import FilterParkingSite from './FilterParkingSite';
+import small_logo from '../assets/images/small-logo.png';
 
 function SearchAdmin({
     searchKeyword,
@@ -55,8 +56,17 @@ function SearchAdmin({
     };
 
     return (
-        <div className="ml-8 flex h-full w-full items-center py-3">
-            <MagnifyingGlass className="mr-2 h-6 cursor-pointer text-xl text-gray-400" weight="bold" />
+        <div className="ml-4 flex h-full w-full items-center py-2 md:ml-8 md:py-3">
+            <div className="mr-2 h-full min-w-fit md:hidden">
+                <Link className="" to="/">
+                    <img
+                        src={small_logo}
+                        className={`block h-full cursor-pointer transition duration-300`}
+                        alt="Logo Best Parking"
+                    />
+                </Link>
+            </div>
+            <MagnifyingGlass className="mr-2 h-6 cursor-pointer text-4xl text-gray-400 md:text-xl" weight="bold" />
             <input
                 onKeyDown={handleKeyDown}
                 onChange={handleInputChange}
@@ -89,7 +99,7 @@ function SearchAdmin({
             )}
             <button
                 onClick={handleClickSearch}
-                className="ml-4 flex h-full items-center justify-center gap-x-1.5 rounded-md bg-blue-main px-3 py-2 text-sm font-semibold text-white shadow-sm  transition duration-300 hover:ring-4 hover:ring-blue-main-ring"
+                className="ml-2 flex h-full items-center justify-center gap-x-1.5 rounded-md bg-blue-main px-3 py-2 text-xs font-semibold text-white shadow-sm transition duration-300  hover:ring-4 hover:ring-blue-main-ring md:ml-4 md:text-sm"
             >
                 Search
             </button>

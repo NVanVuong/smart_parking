@@ -36,7 +36,7 @@ function FilterAccount({ showFilter, setShowFilter, type, setType }) {
         <div ref={filterRef} className="relative h-full text-left">
             <button
                 onClick={handleShowFilter}
-                className="bor flex h-full w-full items-center justify-center gap-x-1.5 rounded-md border-2 bg-white px-3 py-2 text-sm font-semibold text-blue-main shadow-sm transition duration-300 hover:ring-4 hover:ring-blue-main-ring"
+                className=" flex h-full w-full items-center justify-center gap-x-1.5 rounded-md border-2 bg-white px-3 py-2 text-sm font-semibold text-blue-main shadow-sm transition duration-300 hover:ring-4 hover:ring-blue-main-ring"
             >
                 {types.find((type) => type.value === typeSelected)?.label || 'All'}
                 <CaretDown size={16} className=" text-blue-main" weight="bold" />
