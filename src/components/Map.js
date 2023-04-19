@@ -22,6 +22,7 @@ function LocationMarker() {
 
     useEffect(() => {
         map.locate();
+        // eslint-disable-next-line
     }, []);
 
     return position === null ? null : (
