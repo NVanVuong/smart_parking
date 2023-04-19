@@ -4,7 +4,13 @@ import { FaChargingStation, FaCarAlt } from 'react-icons/fa';
 import { MdOutlineMobileFriendly } from 'react-icons/md';
 import { AiOutlineScan } from 'react-icons/ai';
 
-function ParkingListItem({ parkingSite }) {
+function ParkingListItemDetail({ setShowModal, parkingSite, setSelectedParkingSite }) {
+    const handleBookClick = (parkingSite) => {
+        setShowModal(true);
+        setSelectedParkingSite(parkingSite);
+        console.log('click book detail');
+    };
+
     return (
         <div className="relative flex h-full w-full flex-col overflow-y-scroll rounded-lg border p-6">
             <div className="mb-2 flex justify-between">
@@ -74,11 +80,14 @@ function ParkingListItem({ parkingSite }) {
                     </div>
                 </div>
             </div>
-            <button className="fixed bottom-4 w-96 transform rounded-md bg-blue-main p-4 font-bold text-white shadow-2xl hover:bg-blue-main-hover hover:ring-4 hover:ring-blue-main-ring active:ring-blue-main-ring">
+            <button
+                onClick={() => handleBookClick(parkingSite)}
+                className="fixed bottom-4 w-96 transform rounded-md bg-blue-main p-4 font-bold text-white shadow-2xl hover:bg-blue-main-hover hover:ring-4 hover:ring-blue-main-ring active:ring-blue-main-ring"
+            >
                 Book now
             </button>
         </div>
     );
 }
 
-export default ParkingListItem;
+export default ParkingListItemDetail;

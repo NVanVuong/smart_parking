@@ -29,7 +29,11 @@ function ParkingList({
             case 'closest':
                 return <div>Closest parking sites</div>;
             case 'detail':
-                return selectedParkingSite && <ParkingListItemDetail parkingSite={selectedParkingSite} />;
+                return (
+                    selectedParkingSite && (
+                        <ParkingListItemDetail setShowModal={setShowModal} parkingSite={selectedParkingSite} />
+                    )
+                );
             default:
                 return null;
         }
