@@ -3,6 +3,7 @@ import { SlideBar, Accounts, ParkingSites, Tickets } from '~/components';
 import { path } from '~/ultils/contains';
 
 function Admin() {
+    console.log('a');
     return (
         <div className="flex flex-col md:flex-row">
             <SlideBar></SlideBar>
