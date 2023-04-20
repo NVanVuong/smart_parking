@@ -10,12 +10,16 @@ function Header() {
                 <img src={logo} alt="Best Parking Logo" className="h-[50px] w-[250px]" />
             </Link>
             <nav role="navigation" className="flex flex-row items-center">
-                <Link
-                    to="/admin"
-                    className="mr-6 text-xs font-bold uppercase tracking-wider  text-blue-main hover:text-gray-400"
-                >
-                    ADMIN
-                </Link>
+                {auth.account?.type === 'admin' ? (
+                    <Link
+                        to="/admin"
+                        className="mr-6 text-xs font-bold uppercase tracking-wider  text-blue-main hover:text-gray-400"
+                    >
+                        ADMIN
+                    </Link>
+                ) : (
+                    <></>
+                )}
                 {!auth.token ? (
                     <Link
                         to="/login"
