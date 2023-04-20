@@ -1,4 +1,5 @@
 import axiosClient from './apiClient';
+import qs from 'qs';
 
 export const category = {
     accounts: 'accounts',
@@ -22,12 +23,24 @@ const adminApi = {
         return axiosClient.delete(`${category[cate]}/${id}`);
     },
     searchParkingSite: (availMin, availMax, priceMin, priceMax, keyword) => {
-        return axiosClient.get(
-            `parkingsites?avail[gte]=${availMin}&avail[lte]=${availMax}&price[gte]=${priceMin}&price[lte]=${priceMax}&keyword=${keyword}`,
-        );
+        const params = qs.stringify({
+            avail: { gte: availMin, lte: availMax },
+            price: { gte: priceMin, lte: priceMax },
+            keyword,
+        });
+        return axiosClient.get(`parkingsites?${params}`);
+    },
+    searchParkingSiteUser: (keyword) => {
+        const params = qs.stringify({ keyword });
+        return axiosClient.get(`parkingsites?${params}`);
     },
     searchAccount: (keyword, type) => {
-        return axiosClient.get(`accounts?keyword=${keyword}&type=${type}`);
+        const params = qs.stringify({ keyword, type });
+        return axiosClient.get(`accounts?${params}`);
+    },
+    getParkingNearBy: (lat, lng, distance = 4) => {
+        const params = qs.stringify({ lat, lng, distance });
+        return axiosClient.get(`/parkingsites/nearby?${params}`);
     },
     getMyReservation: () => {
         return axiosClient.get(`/reservation/myreserve`);

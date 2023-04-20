@@ -90,9 +90,6 @@ function ParkingSites() {
         delete parkingSiteUpdated.coordinates;
         delete parkingSiteUpdated.address;
 
-        console.log(parkingSite);
-        console.log(parkingSiteAdd);
-        console.log(parkingSiteUpdated);
         if (modeModal === 'Add') {
             await adminApi.create(category.parkingsites, parkingSiteAdd);
         } else if (modeModal === 'Edit') {

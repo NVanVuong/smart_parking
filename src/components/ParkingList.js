@@ -1,16 +1,27 @@
 import ParkingListItem from './ParkingListItem';
 import ParkingListItemDetail from './ParkingListItemDetail';
+import SearchUser from './SearchUser';
 
 function ParkingList({
+    mapRef,
+    position,
+    setCenter,
+    searchKeyword,
+    setSearchKeyword,
+    handleSearch,
     setShowModal,
     currentFilter,
     setCurrentFilter,
     parkingSites,
+    parkingSitesNearBy,
     selectedParkingSite,
     setSelectedParkingSite,
 }) {
     const handleFilterChange = (filter) => {
         setCurrentFilter(filter);
+        if (filter === 'closest') {
+            setCenter(position);
+        }
     };
 
     const renderParkingListItems = () => {
@@ -18,6 +29,8 @@ function ParkingList({
             case 'all':
                 return parkingSites.map((parkingSite) => (
                     <ParkingListItem
+                        mapRef={mapRef}
+                        setCenter={setCenter}
                         key={parkingSite._id}
                         setShowModal={setShowModal}
                         currentFilter={currentFilter}
@@ -27,7 +40,18 @@ function ParkingList({
                     />
                 ));
             case 'closest':
-                return <div>Closest parking sites</div>;
+                return parkingSitesNearBy.map((parkingSite) => (
+                    <ParkingListItem
+                        mapRef={mapRef}
+                        setCenter={setCenter}
+                        key={parkingSite._id}
+                        setShowModal={setShowModal}
+                        currentFilter={currentFilter}
+                        setCurrentFilter={setCurrentFilter}
+                        parkingSite={parkingSite}
+                        setSelectedParkingSite={setSelectedParkingSite}
+                    />
+                ));
             case 'detail':
                 return (
                     selectedParkingSite && (
@@ -41,6 +65,7 @@ function ParkingList({
 
     return (
         <div className="relative h-full w-2/5 overflow-y-hidden">
+            <SearchUser searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} handleSearch={handleSearch} />
             <ul className="flex h-10 items-end justify-center space-x-10 border-b px-8 pb-1.5">
                 <li
                     className={`${
@@ -56,18 +81,18 @@ function ParkingList({
                     } cursor-pointer border-b-2 px-2 pb-1 text-sm font-medium  text-gray-500 transition-all duration-500 hover:text-blue-main `}
                     onClick={() => handleFilterChange('closest')}
                 >
-                    Closet
+                    Closest
                 </li>
                 <li
                     className={`${
                         currentFilter === 'detail' ? 'border-blue-main ' : 'border-transparent'
-                    } cursor-pointer border-b-2  px-2 pb-1 text-sm font-medium  text-gray-500 transition-all duration-500 hover:text-blue-main`}
+                    } pointer-events-none cursor-pointer border-b-2  px-2 pb-1 text-sm font-medium  text-gray-500 transition-all duration-500 hover:text-blue-main`}
                     onClick={() => handleFilterChange('detail')}
                 >
                     Detail
                 </li>
             </ul>
-            <div className="h-full overflow-y-auto pb-11">{renderParkingListItems()}</div>
+            <div className="h-full overflow-y-auto pb-28">{renderParkingListItems()}</div>
         </div>
     );
 }

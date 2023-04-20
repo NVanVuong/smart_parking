@@ -29,7 +29,6 @@ function Login() {
                 const jwt = response.data?.data.token;
                 console.log(jwt);
                 setCookie('jwt', jwt, 5);
-
                 auth.login(jwt, response.data?.data.account);
                 navigate(redirectPath, { replace: true });
             })
