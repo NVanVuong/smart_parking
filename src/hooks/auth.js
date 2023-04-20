@@ -2,7 +2,7 @@ import { useState, createContext, useContext } from 'react';
 // import { verify } from 'jsonwebtoken';
 const AuthContext = createContext(null);
 
-const secret = process.env.REACT_APP_JWT_SECRET;
+// const secret = process.env.REACT_APP_JWT_SECRET;
 
 export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null);

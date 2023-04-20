@@ -8,6 +8,7 @@ function Login() {
     const auth = useAuth();
     useEffect(() => {
         if (auth.token) navigate('/', { replace: true });
+        // eslint-disable-next-line
     }, []);
     const redirectPath = location.state?.path || '/';
     console.log(redirectPath);
@@ -28,7 +29,7 @@ function Login() {
                 const jwt = response.data?.data.token;
                 console.log(jwt);
                 setCookie('jwt', jwt, 5);
-               
+
                 auth.login(jwt);
                 navigate(redirectPath, { replace: true });
             })
