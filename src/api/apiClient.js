@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useAuth } from '~/hooks/auth';
 
 const getToken = () => {
     const cookies = document.cookie.split(';');
