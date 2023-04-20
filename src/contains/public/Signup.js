@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '~/hooks/auth';
-function Login() {
+function Signup() {
     const navigate = useNavigate();
     const location = useLocation();
     const auth = useAuth();
-    const [account, setAccount] = useState({ username: '', password: '' });
-    useEffect(() => {       
-        console.log(auth.token);
+    const [user, setUser] = useState({ username: '', password: '', phone: '', name: '' });
+    useEffect(() => {
         if (auth.token) navigate('/', { replace: true });
     }, [auth.token]);
     const redirectPath = location.state?.path || '/';
@@ -21,15 +20,16 @@ function Login() {
     };
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(account);
+        console.log(user);
         axios
-            .post('http://127.0.0.1:5000/api/auth/login', account)
+            .post('http://127.0.0.1:5000/api/auth/signup', user)
             .then((response) => {
                 console.log('Response:', response.headers);
                 const jwt = response.data?.data.token;
                 console.log(jwt);
                 setCookie('jwt', jwt, 5);
-                auth.login(jwt, response.data?.data.account);
+
+                auth.login(jwt, response.data?.data.user);
                 navigate(redirectPath, { replace: true });
             })
             .catch((error) => {
@@ -39,12 +39,32 @@ function Login() {
     return (
         <form onSubmit={handleSubmit}>
             <label>
+                <p>Name</p>
+                <input
+                    type="text"
+                    value={user.name}
+                    onChange={(e) => {
+                        setUser((prev) => ({ ...prev, name: e.target.value }));
+                    }}
+                />
+            </label>
+            <label>
+                <p>Phone</p>
+                <input
+                    type="text"
+                    value={user.phone}
+                    onChange={(e) => {
+                        setUser((prev) => ({ ...prev, phone: e.target.value }));
+                    }}
+                />
+            </label>
+            <label>
                 <p>Username</p>
                 <input
                     type="text"
-                    value={account.username}
+                    value={user.username}
                     onChange={(e) => {
-                        setAccount((prev) => ({ ...prev, username: e.target.value }));
+                        setUser((prev) => ({ ...prev, username: e.target.value }));
                     }}
                 />
             </label>
@@ -52,9 +72,9 @@ function Login() {
                 <p>Password</p>
                 <input
                     type="password"
-                    value={account.password}
+                    value={user.password}
                     onChange={(e) => {
-                        setAccount((prev) => ({ ...prev, password: e.target.value }));
+                        setUser((prev) => ({ ...prev, password: e.target.value }));
                     }}
                 />
             </label>
@@ -65,4 +85,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Signup;
