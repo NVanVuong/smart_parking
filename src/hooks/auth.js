@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
                     })
                     .catch((error) => {
                         console.log('hello');
-                        const cookie = `jwt=; expires=${0}; path=/`;
+                        const cookie = `jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
                         document.cookie = cookie;
                         setAccount(null);
                         setToken(null);
@@ -45,6 +45,8 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         setToken(null);
         setAccount(null);
+        const cookie = `jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        document.cookie = cookie;
     };
 
     return <AuthContext.Provider value={{ token, login, logout, account }}>{children}</AuthContext.Provider>;
