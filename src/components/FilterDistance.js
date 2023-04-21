@@ -10,6 +10,7 @@ export default function FilterDistance({
     distance,
     setDistance,
     center,
+    setCenter,
     setCurrentFilter,
     getParkingNearBy,
 }) {

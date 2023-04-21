@@ -35,9 +35,9 @@ function Map({
     const handleSetMapZoomLevel = (filter) => {
         if (mapRef.current) {
             if (filter === 'all') {
-                mapRef.current.setView(position, 13);
+                mapRef.current.setView(center, 13);
             } else if (filter === 'closest') {
-                mapRef.current.setView(position, 14);
+                mapRef.current.setView(center, 14);
             }
         }
     };
@@ -85,6 +85,7 @@ function Map({
                 distance={distance}
                 setDistance={setDistance}
                 center={center}
+                setCenter={setCenter}
                 setCurrentFilter={setCurrentFilter}
                 getParkingNearBy={getParkingNearBy}
             />

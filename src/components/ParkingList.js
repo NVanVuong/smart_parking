@@ -4,7 +4,6 @@ import SearchUser from './SearchUser';
 
 function ParkingList({
     mapRef,
-    position,
     setCenter,
     searchKeyword,
     setSearchKeyword,
@@ -19,9 +18,6 @@ function ParkingList({
 }) {
     const handleFilterChange = (filter) => {
         setCurrentFilter(filter);
-        if (filter === 'closest') {
-            setCenter(position);
-        }
     };
 
     const renderParkingListItems = () => {

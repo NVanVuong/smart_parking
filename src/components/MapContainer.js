@@ -92,7 +92,6 @@ function MapContainer() {
             <ModalBooking parkingSite={selectedParkingSite} showModal={showModal} setShowModal={setShowModal} />
             <ParkingList
                 mapRef={mapRef}
-                position={position}
                 setCenter={setCenter}
                 searchKeyword={searchKeyword}
                 handleSearch={handleSearch}
@@ -108,9 +107,9 @@ function MapContainer() {
             <Map
                 mapRef={mapRef}
                 position={position}
+                setPosition={setPosition}
                 distance={distance}
                 setDistance={setDistance}
-                setPosition={setPosition}
                 center={center}
                 setCenter={setCenter}
                 setShowModal={setShowModal}

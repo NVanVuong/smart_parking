@@ -64,13 +64,20 @@ function Accounts() {
         } else if (modeModal === 'Edit') {
             await adminApi.update(category.accounts, account._id, updatedAccount);
         }
-
-        modeModal === 'Add' ? await getAccounts() : await handleSearch(searchKeyword);
-        setShowModal(false);
+        if (modeModal === 'Add') {
+            await getAccounts();
+        } else {
+            setShowModal(false);
+            // setLoading(true);
+            await getAccounts();
+            await handleSearch(searchKeyword);
+            // setLoading(false);
+        }
     };
 
     const handleDelete = async (id) => {
         await adminApi.delete(category.accounts, id);
+        await getAccounts();
         await handleSearch(searchKeyword);
         setShowModal(false);
     };

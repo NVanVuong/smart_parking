@@ -96,12 +96,18 @@ function ParkingSites() {
             await adminApi.update(category.parkingsites, parkingSiteUpdated._id, parkingSiteUpdated);
         }
 
-        modeModal === 'Add' ? await getParkingSites() : await handleSearch(searchKeyword);
+        if (modeModal === 'Add') {
+            await getParkingSites();
+        } else {
+            await getParkingSites();
+            await handleSearch(searchKeyword);
+        }
         setShowModal(false);
     };
 
     const handleDelete = async (id) => {
         await adminApi.delete(category.parkingsites, id);
+        await getParkingSites();
         await handleSearch(searchKeyword);
         setShowModal(false);
     };
