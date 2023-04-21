@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaUserAlt, FaCarAlt, FaTicketAlt } from 'react-icons/fa';
 import { BiLogOut } from 'react-icons/bi';
-import logo from '../assets/images/logo.png';
-import small_logo from '../assets/images/small-logo.png';
+import smart_parking_rec from '../assets/images/smart_parking_rec.png';
+import smart_parking_square from '../assets/images/smart_parking_square.png';
 
 function SideBar() {
     const location = useLocation();
@@ -27,14 +27,14 @@ function SideBar() {
             <div
                 onClick={handleClick}
                 className={`${
-                    open ? 'w-60' : 'w-20'
+                    open ? 'w-52' : 'w-20'
                 } hidden h-screen grow-0 flex-col justify-between bg-gray-100 p-4 transition-all duration-300 md:flex `}
             >
                 <div>
                     <Link to="/">
                         <img
-                            src={open ? logo : small_logo}
-                            className={`${open ? 'w-52' : 'w-12'} h-12 cursor-pointer transition duration-300`}
+                            src={open ? smart_parking_rec : smart_parking_square}
+                            className={`${open ? 'w-36' : 'w-12'} h-12 cursor-pointer transition duration-300`}
                             alt="Logo Best Parking"
                         />
                     </Link>
@@ -60,7 +60,7 @@ function SideBar() {
                                             <span
                                                 className={`${isActive && 'font-medium text-blue-main'} ${
                                                     open ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
-                                                } select-none whitespace-nowrap transition duration-300`}
+                                                } select-none whitespace-nowrap text-base transition duration-300`}
                                             >
                                                 {menu.title}
                                             </span>
