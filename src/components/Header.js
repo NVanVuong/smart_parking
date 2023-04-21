@@ -1,13 +1,13 @@
 import React from 'react';
-import logo from '../assets/images/logo.png';
+import smart_parking_rec from '../assets/images/smart_parking_rec.png';
 import { Link } from 'react-router-dom';
 import { useAuth } from '~/hooks/auth';
 function Header() {
     const auth = useAuth();
     return (
-        <header className="flex items-center justify-between py-[10px] px-[15px]">
+        <header className="flex items-center justify-between px-[15px]">
             <Link to="/" className="block border-0 bg-transparent bg-contain bg-no-repeat p-0">
-                <img src={logo} alt="Best Parking Logo" className="h-[50px] w-[250px]" />
+                <img src={smart_parking_rec} alt="Best Parking Logo" className="h-16 w-auto" />
             </Link>
             <nav role="navigation" className="flex flex-row items-center">
                 {auth.account?.type === 'admin' ? (

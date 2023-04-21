@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import adminApi, { category } from '~/api/adminApi';
+import userApi from '~/api/userApi';
 import Map from './Map';
 import ParkingList from './ParkingList';
 import ModalBooking from './ModalBooking';
@@ -25,11 +26,11 @@ function MapContainer() {
                     reject,
                 );
             });
-            console.log(pos);
             setPosition(pos);
             getParkingNearBy(pos, distance);
         };
         fetchData();
+        // eslint-disable-next-line
     }, []);
 
     const getParkingSites = async () => {
@@ -49,7 +50,7 @@ function MapContainer() {
     };
 
     const getParkingNearBy = async (position, distance) => {
-        const response = await adminApi.getParkingNearBy(position?.[0], position?.[1], distance);
+        const response = await userApi.getParkingNearBy(position?.[0], position?.[1], distance);
         const parkingSites = response.data.data.parkingsite;
 
         const newParkingSites = parkingSites.map((parkingSite) => {
@@ -64,7 +65,7 @@ function MapContainer() {
     };
 
     const handleSearch = async (searchKeyword) => {
-        const response = await adminApi.searchParkingSiteUser(searchKeyword);
+        const response = await userApi.searchParkingSite(searchKeyword);
         const parkingSites = response.data.data.parkingsite;
 
         const newParkingSites = parkingSites.map((parkingSite) => {

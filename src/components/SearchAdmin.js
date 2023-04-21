@@ -3,7 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { MagnifyingGlass, X } from '@phosphor-icons/react';
 import FilterAccount from './FilterAccount';
 import FilterParkingSite from './FilterParkingSite';
-import small_logo from '../assets/images/small-logo.png';
+import smart_parking_square from '../assets/images/smart_parking_square.png';
 
 function SearchAdmin({
     searchKeyword,
@@ -60,7 +60,7 @@ function SearchAdmin({
             <div className="mr-2 h-full min-w-fit md:hidden">
                 <Link className="" to="/">
                     <img
-                        src={small_logo}
+                        src={smart_parking_square}
                         className={`block h-full cursor-pointer transition duration-300`}
                         alt="Logo Best Parking"
                     />
