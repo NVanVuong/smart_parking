@@ -3,8 +3,8 @@ import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '~/hooks/auth';
 function Login() {
-    const navigate = useNavigate();
     const location = useLocation();
+    const navigate = useNavigate();
     const auth = useAuth();
     const [account, setAccount] = useState({ username: '', password: '' });
     useEffect(() => {       

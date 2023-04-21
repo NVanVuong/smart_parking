@@ -9,13 +9,17 @@ function Header() {
             <Link to="/" className="block border-0 bg-transparent bg-contain bg-no-repeat p-0">
                 <img src={smart_parking_rec} alt="Best Parking Logo" className="h-16 w-auto" />
             </Link>
-            <nav role="navigation" className="flex flex-row items-center py-2.5">
-                <Link
-                    to="/admin"
-                    className="mr-6 text-xs font-bold uppercase tracking-wider  text-blue-main hover:text-gray-400"
-                >
-                    ADMIN
-                </Link>
+            <nav role="navigation" className="flex flex-row items-center">
+                {auth.account?.type === 'admin' ? (
+                    <Link
+                        to="/admin"
+                        className="mr-6 text-xs font-bold uppercase tracking-wider  text-blue-main hover:text-gray-400"
+                    >
+                        ADMIN
+                    </Link>
+                ) : (
+                    <></>
+                )}
                 {!auth.token ? (
                     <Link
                         to="/login"
