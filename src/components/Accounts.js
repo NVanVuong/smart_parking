@@ -5,8 +5,11 @@ import Loading from './Loading';
 import SearchAdmin from './SearchAdmin';
 import ModalAccount from './ModalAccount';
 import Pagination from './Pagination';
+import { useAuth } from '~/hooks/auth';
 
 function Accounts() {
+    const auth = useAuth();
+
     const [accounts, setAccounts] = useState([]);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [type, setType] = useState('');
@@ -92,7 +95,7 @@ function Accounts() {
                     handleSearch={handleSearch}
                 />
                 <span className="mx-2 h-9 border md:mx-4"></span>
-                <p className="mr-4 text-xs font-semibold md:mr-8 md:text-sm">nvvuong</p>
+                <p className="mr-4 text-xs font-semibold md:mr-8 md:text-sm">{auth.account.name}</p>
             </div>
             <button
                 onClick={() => handleModal('Add', null)}

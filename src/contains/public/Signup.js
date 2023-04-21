@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '~/hooks/auth';
 import apiConfig from '~/api/apiConfig';
 import axios from 'axios';
-import adminApi, { category } from '~/api/adminApi';
 
 function Signup() {
     const navigate = useNavigate();
