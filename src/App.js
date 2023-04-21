@@ -5,12 +5,11 @@ import { RequireAuth } from '~/hooks/requireAuth';
 import Signup from './contains/public/Signup';
 function App() {
     return (
-        <div className="bg-primary w-screen">
+        <div className="w-screen">
             <Routes>
                 <Route path={path.HOME} element={<Home />} />
                 <Route path={path.LOGIN} element={<Login />} />
                 <Route path={path.SIGNUP} element={<Signup />} />
-
                 <Route
                     path={path.ADMIN}
                     element={

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { BiCurrentLocation } from 'react-icons/bi';
-import { AiOutlineTrademarkCircle } from 'react-icons/ai';
 import ParkingSiteMarker from './ParkingSiteMarker';
 import LocationMarker from './LocationMarker';
 import FilterDistance from './FilterDistance';

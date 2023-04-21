@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '~/hooks/auth';
+import apiConfig from '~/api/apiConfig';
+import axios from 'axios';
 function Signup() {
     const navigate = useNavigate();
     const location = useLocation();
@@ -9,6 +10,7 @@ function Signup() {
     const [user, setUser] = useState({ username: '', password: '', phone: '', name: '' });
     useEffect(() => {
         if (auth.token) navigate('/', { replace: true });
+        // eslint-disable-next-line
     }, [auth.token]);
     const redirectPath = location.state?.path || '/';
     console.log(redirectPath);
@@ -22,7 +24,7 @@ function Signup() {
         event.preventDefault();
         console.log(user);
         axios
-            .post('http://127.0.0.1:5000/api/auth/signup', user)
+            .post(`${apiConfig.baseURL}auth/signup`, user)
             .then((response) => {
                 console.log('Response:', response.headers);
                 const jwt = response.data?.data.token;
