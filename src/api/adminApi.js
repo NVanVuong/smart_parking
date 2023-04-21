@@ -30,23 +30,9 @@ const adminApi = {
         });
         return axiosClient.get(`parkingsites?${params}`);
     },
-    searchParkingSiteUser: (keyword) => {
-        const params = qs.stringify({ keyword });
-        return axiosClient.get(`parkingsites?${params}`);
-    },
     searchAccount: (keyword, type) => {
         const params = qs.stringify({ keyword, type });
         return axiosClient.get(`accounts?${params}`);
-    },
-    getParkingNearBy: (lat, lng, distance = 4) => {
-        const params = qs.stringify({ lat, lng, distance });
-        return axiosClient.get(`/parkingsites/nearby?${params}`);
-    },
-    getMyReservation: () => {
-        return axiosClient.get(`/reservation/myreserve`);
-    },
-    bookReservation: (params = {}) => {
-        return axiosClient.post('/reservation', { ...params });
     },
 };
 

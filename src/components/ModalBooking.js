@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import adminApi from '~/api/adminApi';
+import userApi from '~/api/userApi';
 
 export default function ModalBooking({ parkingSite, showModal, setShowModal }) {
     const [numberPlate, setNumberPlate] = useState('');
@@ -21,11 +21,11 @@ export default function ModalBooking({ parkingSite, showModal, setShowModal }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const newReservation = {
-            parkingSiteId: parkingSite._id,
+            parkingSite: parkingSite._id,
             lpNumber: numberPlate,
         };
         console.log(newReservation);
-        await adminApi.bookReservation(newReservation);
+        await userApi.bookReservation(newReservation);
         setShowModal(false);
     };
     return (
