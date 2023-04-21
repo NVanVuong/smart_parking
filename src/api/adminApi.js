@@ -4,6 +4,7 @@ import qs from 'qs';
 export const category = {
     accounts: 'accounts',
     parkingsites: 'parkingsites',
+    reservation: 'reservation',
 };
 
 const adminApi = {
@@ -33,6 +34,10 @@ const adminApi = {
     searchAccount: (keyword, type) => {
         const params = qs.stringify({ keyword, type });
         return axiosClient.get(`accounts?${params}`);
+    },
+    searchReservation: (keyword) => {
+        const params = qs.stringify({ keyword });
+        return axiosClient.get(`reservation?${params}`);
     },
 };
 

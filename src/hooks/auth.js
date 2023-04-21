@@ -1,7 +1,7 @@
 import { useState, createContext, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import axiosClient from '~/api/apiClient';
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
@@ -47,6 +47,7 @@ export const AuthProvider = ({ children }) => {
         setAccount(null);
         const cookie = `jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
         document.cookie = cookie;
+        axiosClient.defaults.headers.common['authorization'] = '';
     };
 
     return <AuthContext.Provider value={{ token, login, logout, account }}>{children}</AuthContext.Provider>;
