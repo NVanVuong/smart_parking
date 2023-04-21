@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useAuth } from '~/hooks/auth';
+import apiConfig from './apiConfig';
 
 const getToken = () => {
     const cookies = document.cookie.split(';');
@@ -16,14 +16,14 @@ const getToken = () => {
 const axiosClient =
     getToken() !== ''
         ? axios.create({
-              baseURL: 'http://127.0.0.1:5000/api/',
+              baseURL: apiConfig.baseURL,
               headers: {
                   'Content-Type': 'application/json',
                   authorization: `Bearer ${getToken()}`,
               },
           })
         : axios.create({
-              baseURL: 'http://127.0.0.1:5000/api/',
+              baseURL: apiConfig.baseURL,
               headers: {
                   'Content-Type': 'application/json',
               },
