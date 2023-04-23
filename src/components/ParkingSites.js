@@ -5,8 +5,10 @@ import SearchAdmin from './SearchAdmin';
 import Loading from './Loading';
 import ModalParkingSite from './ModalParkingSite';
 import Pagination from './Pagination';
+import { useAuth } from '~/hooks/auth';
 
 function ParkingSites() {
+    const auth = useAuth();
     const [parkingSites, setParkingSites] = useState([]);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [loading, setLoading] = useState(true);
@@ -134,7 +136,7 @@ function ParkingSites() {
                     handleSearch={handleSearch}
                 />
                 <span className="mx-2 h-9 border md:mx-4"></span>
-                <p className="mr-4 text-xs font-semibold md:mr-8 md:text-sm">nvvuong</p>
+                <p className="mr-4 text-xs font-semibold md:mr-8 md:text-sm">{auth.account.username}</p>
             </div>
             <button
                 onClick={() => handleModal('Add', null)}
