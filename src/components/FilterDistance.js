@@ -47,7 +47,7 @@ export default function FilterDistance({
     };
 
     return (
-        <div ref={filterRef} className="absolute top-[111px] z-[9999999] ml-[10.5px] block cursor-pointer rounded">
+        <div ref={filterRef} className="absolute top-[111px] z-[9999] ml-[10.5px] block cursor-pointer rounded">
             <button className="flex">
                 <AiOutlineTrademarkCircle
                     onClick={handleClick}

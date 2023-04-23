@@ -45,7 +45,7 @@ function Login() {
     return (
         <form onSubmit={handleSubmit} className="relative flex min-h-screen flex-col justify-center overflow-hidden">
             <div className="m-auto w-full rounded-md bg-white p-6 shadow-md lg:max-w-xl">
-                <h1 className="text-center text-3xl font-semibold text-purple-700 underline">Sign in</h1>
+                <h1 className="text-center text-3xl font-semibold text-blue-main underline">Sign in</h1>
 
                 <div className="mb-2">
                     <label htmlFor="username" className="block text-sm font-semibold text-gray-800">
@@ -58,7 +58,7 @@ function Login() {
                         onChange={(e) => {
                             setAccount((prev) => ({ ...prev, username: e.target.value }));
                         }}
-                        className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-purple-700 focus:border-purple-400 focus:outline-none focus:ring focus:ring-purple-300 focus:ring-opacity-40"
+                        className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-blue-main focus:outline-none focus:ring focus:ring-blue-main-ring focus:ring-opacity-40"
                     />
                 </div>
                 <div className="mb-2">
@@ -72,16 +72,16 @@ function Login() {
                         onChange={(e) => {
                             setAccount((prev) => ({ ...prev, password: e.target.value }));
                         }}
-                        className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-purple-700 focus:border-purple-400 focus:outline-none focus:ring focus:ring-purple-300 focus:ring-opacity-40"
+                        className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-blue-main focus:border-r-indigo-100 focus:outline-none focus:ring focus:ring-blue-main focus:ring-opacity-40"
                     />
                 </div>
-                <Link to={'/login'} className="text-xs text-purple-600 hover:underline">
+                <Link to={'/login'} className="text-xs text-blue-main hover:underline">
                     Forget Password?
                 </Link>
                 <div className="mt-6">
                     <button
                         type="submit"
-                        className="w-full transform rounded-md bg-purple-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-purple-600 focus:bg-purple-600 focus:outline-none"
+                        className="w-full transform rounded-md bg-blue-main px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-blue-main-hover focus:bg-blue-main-ring focus:outline-none"
                     >
                         Login
                     </button>
@@ -90,7 +90,7 @@ function Login() {
 
                 <p className="mt-3 text-center text-xs font-light text-gray-700">
                     Don't have an account?{' '}
-                    <Link to="/signup" className="font-medium text-purple-600 hover:underline">
+                    <Link to="/signup" className="font-medium text-blue-main hover:underline">
                         Sign up
                     </Link>
                 </p>

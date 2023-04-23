@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+
 import userApi from '~/api/userApi';
 
 export default function ModalBooking({ parkingSite, showModal, setShowModal }) {
@@ -24,17 +26,26 @@ export default function ModalBooking({ parkingSite, showModal, setShowModal }) {
             parkingSite: parkingSite._id,
             lpNumber: numberPlate,
         };
-        console.log(newReservation);
-        await userApi.bookReservation(newReservation);
-        setShowModal(false);
+        try {
+            const response = await userApi.bookReservation(newReservation);
+            if (response.data.status === 'success') {
+                toast.success(`Booking successfully at ${parkingSite.name}!`);
+                setShowModal(false);
+            } else {
+                toast.error(`Booking failed: ${response.data.message}`);
+            }
+        } catch (error) {
+            toast.error(`Error booking: ${error.message}`);
+        }
     };
+
     return (
         <>
             {showModal ? (
                 <>
                     <div
                         onClick={handleClickOut}
-                        className="fixed inset-0 z-[9999] flex items-center overflow-y-auto overflow-x-hidden bg-black/25 outline-none focus:outline-none"
+                        className="fixed inset-0 z-[99999] flex items-center overflow-y-auto overflow-x-hidden bg-black/25 outline-none focus:outline-none"
                     >
                         <div className="relative my-6 mx-auto w-4/5 md:w-1/4">
                             <div className="relative flex w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none">

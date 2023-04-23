@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '~/hooks/auth';
 import apiConfig from '~/api/apiConfig';
 import axios from 'axios';
@@ -80,7 +80,7 @@ function Signup() {
     return (
         <form onSubmit={handleSubmit} className="relative flex min-h-screen flex-col justify-center overflow-hidden">
             <div className="m-auto w-full rounded-md bg-white p-6 shadow-md lg:max-w-xl">
-                <h1 className="text-center text-3xl font-semibold text-purple-700 underline">Sign in</h1>
+                <h1 className="text-center text-3xl font-semibold text-blue-main underline">Sign up</h1>
                 <div className="mb-2">
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-800">
                         Name
@@ -93,7 +93,7 @@ function Signup() {
                         onChange={(e) => {
                             setUser((prev) => ({ ...prev, name: e.target.value }));
                         }}
-                        className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-purple-700 focus:border-purple-400 focus:outline-none focus:ring focus:ring-purple-300 focus:ring-opacity-40"
+                        className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-blue-main  focus:outline-none focus:ring focus:ring-blue-main focus:ring-opacity-40"
                     />
                 </div>
                 <div className="mb-2">
@@ -108,7 +108,7 @@ function Signup() {
                         onChange={(e) => {
                             setUser((prev) => ({ ...prev, phone: e.target.value }));
                         }}
-                        className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-purple-700 focus:border-purple-400 focus:outline-none focus:ring focus:ring-purple-300 focus:ring-opacity-40"
+                        className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-blue-main  focus:outline-none focus:ring focus:ring-blue-main focus:ring-opacity-40"
                     />
                 </div>
                 <p className="pt-4 text-sm text-red-500">{mes.phone}</p>
@@ -125,7 +125,7 @@ function Signup() {
                         onChange={(e) => {
                             setUser((prev) => ({ ...prev, username: e.target.value }));
                         }}
-                        className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-purple-700 focus:border-purple-400 focus:outline-none focus:ring focus:ring-purple-300 focus:ring-opacity-40"
+                        className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-blue-main  focus:outline-none focus:ring focus:ring-blue-main focus:ring-opacity-40"
                     />
                 </div>
                 <p className="pt-4 text-sm text-red-500">{mes.username}</p>
@@ -142,7 +142,7 @@ function Signup() {
                         onChange={(e) => {
                             setUser((prev) => ({ ...prev, password: e.target.value }));
                         }}
-                        className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-purple-700 focus:border-purple-400 focus:outline-none focus:ring focus:ring-purple-300 focus:ring-opacity-40"
+                        className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-blue-main  focus:outline-none focus:ring focus:ring-blue-main focus:ring-opacity-40"
                     />
                 </div>
                 <div className="mb-2">
@@ -157,7 +157,7 @@ function Signup() {
                         onChange={(e) => {
                             setUser((prev) => ({ ...prev, confirmPassword: e.target.value }));
                         }}
-                        className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-purple-700 focus:border-purple-400 focus:outline-none focus:ring focus:ring-purple-300 focus:ring-opacity-40"
+                        className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-blue-main  focus:outline-none focus:ring focus:ring-blue-main focus:ring-opacity-40"
                     />
                 </div>
                 <p className="pt-4 text-sm text-red-500">{mes.confimPassword}</p>
@@ -165,12 +165,18 @@ function Signup() {
                 <div className="mt-6">
                     <button
                         type="submit"
-                        className="w-full transform rounded-md bg-purple-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-purple-600 focus:bg-purple-600 focus:outline-none"
+                        className="w-full transform rounded-md bg-blue-main px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-blue-main-hover focus:bg-blue-main-hover focus:outline-none"
                     >
                         Sign up
                     </button>
                     <p className="pt-4 text-sm text-red-500"></p>
                 </div>
+                <p className="mt-3 text-center text-xs font-light text-gray-700">
+                    Already have an account?{' '}
+                    <Link to="/login" className="font-medium text-blue-main hover:underline">
+                        Sign up
+                    </Link>
+                </p>
             </div>
         </form>
     );
