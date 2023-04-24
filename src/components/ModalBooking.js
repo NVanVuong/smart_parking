@@ -30,13 +30,13 @@ export default function ModalBooking({ parkingSite, showModal, setShowModal }) {
             const response = await userApi.bookReservation(newReservation);
             if (response.data.status === 'success') {
                 toast.success(`Booking successfully at ${parkingSite.name}!`);
-                setShowModal(false);
             } else {
                 toast.error(`Booking failed: ${response.data.message}`);
             }
         } catch (error) {
-            toast.error(`Error booking: ${error.message}`);
+            toast.error(`Error booking: Please sign in`);
         }
+        setShowModal(false);
     };
 
     return (

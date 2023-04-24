@@ -28,6 +28,7 @@ function Signup() {
 
     const handleCheckbeforeSubmit = (event) => {
         let check = true;
+        // eslint-disable-next-line
         const phoneNumberRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
         if (!phoneNumberRegex.test(user.phone)) {
             check = false;
@@ -78,7 +79,7 @@ function Signup() {
                 });
     };
     return (
-        <form onSubmit={handleSubmit} className="relative flex min-h-screen flex-col justify-center overflow-hidden">
+        <form onSubmit={handleSubmit} className="relative my-auto flex h-full flex-col justify-center overflow-hidden">
             <div className="m-auto w-full rounded-md bg-white p-6 shadow-md lg:max-w-xl">
                 <h1 className="text-center text-3xl font-semibold text-blue-main underline">Sign up</h1>
                 <div className="mb-2">

@@ -2,8 +2,10 @@ import { useRef, useState, useEffect } from 'react';
 import smart_parking_rec from '../assets/images/smart_parking_rec.png';
 import { Link } from 'react-router-dom';
 import { useAuth } from '~/hooks/auth';
-import { AiFillCaretDown, AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineUser } from 'react-icons/ai';
 import { FiLogOut } from 'react-icons/fi';
+import { FaUserCircle } from 'react-icons/fa';
+import { ImProfile } from 'react-icons/im';
 function Header() {
     const auth = useAuth();
     const ref = useRef(null);
@@ -30,7 +32,7 @@ function Header() {
                 {auth.account?.type === 'admin' ? (
                     <Link
                         to="/admin"
-                        className="mr-6 rounded py-3.5 px-2.5 text-xs font-bold tracking-wider text-blue-main duration-300 hover:ring-4 hover:ring-blue-main-ring"
+                        className="mr-6 rounded border-2 border-solid border-blue-main py-3 px-2.5 text-xs font-bold tracking-wider text-blue-main duration-300 hover:ring-4 hover:ring-blue-main-ring"
                     >
                         ADMIN
                     </Link>
@@ -56,16 +58,18 @@ function Header() {
                     <div ref={ref} className="relative">
                         <button
                             onClick={() => setOpen(!open)}
-                            className="group mr-2 flex rounded-[5px] text-center text-xs font-bold leading-none tracking-wider text-black  transition hover:text-blue-main focus:text-blue-main"
+                            className={`${
+                                open && 'text-blue-main'
+                            } group mr-2 flex items-center rounded-[5px] text-center text-sm font-bold leading-none tracking-wider text-black transition  hover:text-blue-main active:scale-105`}
                         >
                             {auth.account.username}
-                            <AiFillCaretDown className="invisible ml-0.5 group-hover:visible" />
+                            <FaUserCircle className="ml-1 text-2xl" />
                         </button>
                         {open && (
-                            <div className="absolute right-2 top-3 z-[99999] mt-2 w-28 origin-top-right rounded-md bg-white shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div className="absolute right-2 top-6 z-[99999] mt-2 w-36 origin-top-right rounded-md bg-white shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <ul className="py-1">
                                     <li className="flex cursor-pointer items-center space-x-4 bg-white px-4 py-2 text-sm text-gray-900 duration-300 hover:bg-gray-100 ">
-                                        <AiOutlineUser className="mr-2 text-lg" />
+                                        <ImProfile className="mr-2 text-lg" />
                                         Profile
                                     </li>
                                     <li

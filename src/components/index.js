@@ -5,3 +5,5 @@ export { default as ParkingSites } from '~/components/ParkingSites';
 export { default as Accounts } from '~/components/Accounts';
 export { default as Tickets } from '~/components/Tickets';
 export { default as MapContainer } from '~/components/MapContainer';
+export { default as Login } from '~/components/Login';
+export { default as Signup } from '~/components/Signup';

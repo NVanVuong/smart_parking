@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { ToastContainer } from 'react-toastify';
 import adminApi, { category } from '~/api/adminApi';
 import userApi from '~/api/userApi';
 import Map from './Map';
@@ -89,6 +90,7 @@ function MapContainer() {
 
     return (
         <div className="flex max-h-full flex-1 grow overflow-hidden">
+            <ToastContainer />
             <ModalBooking parkingSite={selectedParkingSite} showModal={showModal} setShowModal={setShowModal} />
             <ParkingList
                 mapRef={mapRef}

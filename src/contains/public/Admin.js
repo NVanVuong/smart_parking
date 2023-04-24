@@ -5,7 +5,7 @@ import { path } from '~/ultils/contains';
 function Admin() {
     return (
         <div className="flex flex-col md:flex-row">
-            <SlideBar></SlideBar>
+            <SlideBar />
             <Routes>
                 <Route path="/" element={<Navigate to={path.ACCOUNTS} />} />
                 <Route path={path.ACCOUNTS} element={<Accounts />} />

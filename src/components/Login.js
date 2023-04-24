@@ -43,7 +43,7 @@ function Login() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="relative flex min-h-screen flex-col justify-center overflow-hidden">
+        <form onSubmit={handleSubmit} className="relative my-auto flex h-full flex-col justify-center overflow-hidden">
             <div className="m-auto w-full rounded-md bg-white p-6 shadow-md lg:max-w-xl">
                 <h1 className="text-center text-3xl font-semibold text-blue-main underline">Sign in</h1>
 
@@ -83,7 +83,7 @@ function Login() {
                         type="submit"
                         className="w-full transform rounded-md bg-blue-main px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-blue-main-hover focus:bg-blue-main-ring focus:outline-none"
                     >
-                        Login
+                        Sign in
                     </button>
                     <p className="pt-4 text-sm text-red-500">{mes}</p>
                 </div>
