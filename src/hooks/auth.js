@@ -26,7 +26,6 @@ export const AuthProvider = ({ children }) => {
                         setAccount(response?.data?.data?.account);
                     })
                     .catch((error) => {
-                        console.log('hello');
                         const cookie = `jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
                         document.cookie = cookie;
                         setAccount(null);
@@ -36,6 +35,7 @@ export const AuthProvider = ({ children }) => {
                 break;
             }
         }
+        // eslint-disable-next-line
     }, []);
     const login = (token, account) => {
         setToken(token);
