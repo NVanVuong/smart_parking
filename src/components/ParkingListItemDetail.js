@@ -26,7 +26,15 @@ function ParkingListItemDetail({ setShowModal, parkingSite, setSelectedParkingSi
                 <p className="block text-lg font-bold text-gray-800">About This Facility</p>
                 <p className="mt-3 text-sm  font-medium text-gray-500">{parkingSite.description}</p>
                 <div className="absolute top-6 right-0 text-sm font-medium text-gray-500">
-                    Available: <span className="font-semibold text-gray-800">{parkingSite.availableSpot}</span>
+                    {parkingSite.availableSpot > 0 ? (
+                        <>
+                            Available: <span className="font-semibold text-gray-800">{parkingSite.availableSpot}</span>
+                        </>
+                    ) : (
+                        <span className="rounded-md bg-red-600 bg-opacity-80 py-1 px-2 font-semibold text-white">
+                            Sold out
+                        </span>
+                    )}
                 </div>
             </div>
             <div className="mt-3 text-sm font-medium text-gray-500">
@@ -82,7 +90,9 @@ function ParkingListItemDetail({ setShowModal, parkingSite, setSelectedParkingSi
             </div>
             <button
                 onClick={() => handleBookClick(parkingSite)}
-                className="fixed bottom-4 w-96 transform rounded-md bg-blue-main p-4 font-bold text-white shadow-2xl hover:bg-blue-main-hover hover:ring-4 hover:ring-blue-main-ring active:ring-blue-main-ring"
+                className={`${
+                    parkingSite.availableSpot > 0 ? 'bg-blue-main' : 'pointer-events-none bg-gray-400'
+                } fixed bottom-4 w-96 transform rounded-md  p-4 font-bold text-white shadow-2xl hover:bg-blue-main-hover hover:ring-4 hover:ring-blue-main-ring active:ring-blue-main-ring`}
             >
                 Book now
             </button>
