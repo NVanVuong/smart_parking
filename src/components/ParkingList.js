@@ -4,7 +4,6 @@ import SearchUser from './SearchUser';
 
 function ParkingList({
     mapRef,
-    setCenter,
     searchKeyword,
     setSearchKeyword,
     handleSearch,
@@ -13,6 +12,7 @@ function ParkingList({
     setCurrentFilter,
     parkingSites,
     parkingSitesNearBy,
+    parkingSitesCurrent,
     selectedParkingSite,
     setSelectedParkingSite,
 }) {
@@ -26,7 +26,6 @@ function ParkingList({
                 return parkingSites.map((parkingSite) => (
                     <ParkingListItem
                         mapRef={mapRef}
-                        setCenter={setCenter}
                         key={parkingSite._id}
                         setShowModal={setShowModal}
                         currentFilter={currentFilter}
@@ -39,7 +38,19 @@ function ParkingList({
                 return parkingSitesNearBy.map((parkingSite) => (
                     <ParkingListItem
                         mapRef={mapRef}
-                        setCenter={setCenter}
+                        key={parkingSite._id}
+                        setShowModal={setShowModal}
+                        currentFilter={currentFilter}
+                        setCurrentFilter={setCurrentFilter}
+                        parkingSite={parkingSite}
+                        setSelectedParkingSite={setSelectedParkingSite}
+                    />
+                ));
+            case 'cheapest':
+                const sortedParkingSites = parkingSitesCurrent.slice().sort((a, b) => a.price - b.price);
+                return sortedParkingSites.map((parkingSite) => (
+                    <ParkingListItem
+                        mapRef={mapRef}
                         key={parkingSite._id}
                         setShowModal={setShowModal}
                         currentFilter={currentFilter}
@@ -62,7 +73,7 @@ function ParkingList({
     return (
         <div className="relative h-full w-2/5 overflow-y-hidden">
             <SearchUser searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} handleSearch={handleSearch} />
-            <ul className="flex h-10 items-end justify-center space-x-10 border-b px-8 pb-1.5">
+            <ul className="flex h-10 items-end justify-center space-x-6 border-b px-8 pb-1.5">
                 <li
                     className={`${
                         currentFilter === 'all' ? ' border-blue-main ' : 'border-transparent '
@@ -78,6 +89,14 @@ function ParkingList({
                     onClick={() => handleFilterChange('closest')}
                 >
                     Closest
+                </li>
+                <li
+                    className={`${
+                        currentFilter === 'cheapest' ? 'border-blue-main ' : 'border-transparent'
+                    } cursor-pointer border-b-2 px-2 pb-1 text-sm font-medium  text-gray-500 transition-all duration-500 hover:text-blue-main `}
+                    onClick={() => handleFilterChange('cheapest')}
+                >
+                    Cheapest
                 </li>
                 <li
                     className={`${

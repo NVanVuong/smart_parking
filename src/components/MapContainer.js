@@ -85,8 +85,14 @@ function MapContainer() {
     }, []);
 
     useEffect(() => {
-        setParkingSitesCurrent(currentFilter === 'closest' ? parkingSitesNearBy : parkingSites);
-    }, [currentFilter, parkingSitesNearBy, parkingSites]);
+        setParkingSitesCurrent(
+            currentFilter === 'closest'
+                ? parkingSitesNearBy
+                : currentFilter === 'all'
+                ? parkingSites
+                : parkingSitesCurrent,
+        );
+    }, [currentFilter, parkingSitesNearBy, parkingSites, parkingSitesCurrent]);
 
     return (
         <div className="flex max-h-full flex-1 grow overflow-hidden">
@@ -103,6 +109,7 @@ function MapContainer() {
                 setCurrentFilter={setCurrentFilter}
                 parkingSites={parkingSites}
                 parkingSitesNearBy={parkingSitesNearBy}
+                parkingSitesCurrent={parkingSitesCurrent}
                 selectedParkingSite={selectedParkingSite}
                 setSelectedParkingSite={setSelectedParkingSite}
             />

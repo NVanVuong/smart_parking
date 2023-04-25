@@ -1,8 +1,7 @@
-function ParkingListItem({ mapRef, setCenter, setShowModal, setCurrentFilter, parkingSite, setSelectedParkingSite }) {
+function ParkingListItem({ mapRef, setShowModal, setCurrentFilter, parkingSite, setSelectedParkingSite }) {
     const handleDetailClick = (parkingSite) => {
         setCurrentFilter('detail');
         setSelectedParkingSite(parkingSite);
-        // setCenter(parkingSite.position);
         mapRef.current.setView(parkingSite.position, 16);
     };
 
@@ -12,7 +11,7 @@ function ParkingListItem({ mapRef, setCenter, setShowModal, setCurrentFilter, pa
     };
 
     return (
-        <div className="border px-6 py-3">
+        <div className={`border px-6 py-3`}>
             <div>
                 <div className="flex justify-between">
                     <div className="mb-2 w-4/6 text-lg font-semibold">{parkingSite.name}</div>
@@ -21,14 +20,29 @@ function ParkingListItem({ mapRef, setCenter, setShowModal, setCurrentFilter, pa
                         <span className="ml-1 text-sm">đ</span>
                     </div>
                 </div>
-                <div className="mb-2 text-sm font-medium text-gray-600">
-                    Available: <span className="font-semibold text-gray-800">{parkingSite.availableSpot}</span>
+                <div
+                    className={`mb-2 w-fit rounded-md p-1 px-2 text-sm font-medium text-gray-600 ${
+                        parkingSite.availableSpot > 0
+                            ? 'bg-blue-main bg-opacity-20'
+                            : 'bg-red-600 bg-opacity-80 text-white'
+                    }`}
+                >
+                    {parkingSite.availableSpot > 0 ? (
+                        <>
+                            Available: <span className="font-semibold text-gray-800">{parkingSite.availableSpot}</span>
+                        </>
+                    ) : (
+                        'Sold out'
+                    )}
                 </div>
+
                 <div className="mb-4 overflow-x-hidden text-sm italic text-gray-500">{parkingSite.address}</div>
                 <div className="flex w-full justify-end space-x-4">
                     <button
                         onClick={() => handleBookClick(parkingSite)}
-                        className="rounded-sm bg-blue-main py-2 px-6 font-semibold text-white shadow-md hover:bg-blue-main-hover hover:ring-4 hover:ring-blue-main-ring active:ring-blue-main-ring"
+                        className={`${
+                            parkingSite.availableSpot > 0 ? 'bg-blue-main' : 'pointer-events-none bg-gray-400'
+                        } rounded-sm  py-2 px-6 font-semibold text-white shadow-md hover:bg-blue-main-hover hover:ring-4 hover:ring-blue-main-ring active:ring-blue-main-ring`}
                     >
                         Book now
                     </button>

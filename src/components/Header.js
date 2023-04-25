@@ -2,7 +2,6 @@ import { useRef, useState, useEffect } from 'react';
 import smart_parking_rec from '../assets/images/smart_parking_rec.png';
 import { Link } from 'react-router-dom';
 import { useAuth } from '~/hooks/auth';
-import { AiOutlineUser } from 'react-icons/ai';
 import { FiLogOut } from 'react-icons/fi';
 import { FaUserCircle } from 'react-icons/fa';
 import { ImProfile } from 'react-icons/im';
