@@ -4,6 +4,7 @@ import SearchUser from './SearchUser';
 
 function ParkingList({
     mapRef,
+    toggle,
     searchKeyword,
     setSearchKeyword,
     handleSearch,
@@ -71,9 +72,9 @@ function ParkingList({
     };
 
     return (
-        <div className="relative h-full w-2/5 overflow-y-hidden">
+        <div className={`${toggle ? 'hidden' : 'block'} relative h-full w-full overflow-y-hidden md:block md:w-2/5`}>
             <SearchUser searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} handleSearch={handleSearch} />
-            <ul className="flex h-10 items-end justify-center space-x-6 border-b px-8 pb-1.5">
+            <ul className="flex h-10 items-end justify-center space-x-4 border-b px-4 pb-1.5">
                 <li
                     className={`${
                         currentFilter === 'all' ? ' border-blue-main ' : 'border-transparent '

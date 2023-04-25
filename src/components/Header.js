@@ -23,7 +23,7 @@ function Header() {
     }, [ref, setOpen]);
 
     return (
-        <header className="flex items-center justify-between px-[15px]">
+        <header className="flex items-center justify-between px-[15px] shadow-md md:shadow-none">
             <Link to="/" className="block border-0 bg-transparent bg-contain bg-no-repeat p-0">
                 <img src={smart_parking_rec} alt="Best Parking Logo" className="h-16 w-auto" />
             </Link>
@@ -42,7 +42,7 @@ function Header() {
                     <>
                         <Link
                             to="/login"
-                            className="mr-6 rounded py-3.5 px-2.5  text-xs font-bold tracking-wider text-blue-main duration-300 hover:ring-4 hover:ring-blue-main-ring"
+                            className="mr-2 rounded py-3.5 px-2.5 text-xs  font-bold tracking-wider text-blue-main duration-300 hover:ring-4 hover:ring-blue-main-ring md:mr-6"
                         >
                             SIGN IN
                         </Link>

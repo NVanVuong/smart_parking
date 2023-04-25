@@ -79,8 +79,11 @@ function Signup() {
                 });
     };
     return (
-        <form onSubmit={handleSubmit} className="relative my-auto flex h-full flex-col justify-center overflow-hidden">
-            <div className="m-auto w-full rounded-md bg-white p-6 shadow-md lg:max-w-xl">
+        <form
+            onSubmit={handleSubmit}
+            className="relative mx-auto mt-12 flex h-fit w-5/6 flex-col justify-center overflow-hidden rounded-md shadow-md md:w-1/3"
+        >
+            <div className="m-auto w-full bg-white px-6 py-4 lg:max-w-xl">
                 <h1 className="text-center text-3xl font-semibold text-blue-main underline">Sign up</h1>
                 <div className="mb-2">
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-800">
@@ -162,15 +165,13 @@ function Signup() {
                     />
                 </div>
                 <p className="pt-4 text-sm text-red-500">{mes.confimPassword}</p>
-
-                <div className="mt-6">
+                <div className="mt-2">
                     <button
                         type="submit"
-                        className="w-full transform rounded-md bg-blue-main px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-blue-main-hover focus:bg-blue-main-hover focus:outline-none"
+                        className="w-full transform rounded-md bg-blue-main px-4 py-2 tracking-wide text-white shadow-md transition-colors duration-200 hover:bg-blue-main-hover focus:bg-blue-main-hover focus:outline-none"
                     >
                         Sign up
                     </button>
-                    <p className="pt-4 text-sm text-red-500"></p>
                 </div>
                 <p className="mt-3 text-center text-xs font-light text-gray-700">
                     Already have an account?{' '}
