@@ -12,7 +12,7 @@ function ParkingListItemDetail({ setShowModal, parkingSite, setSelectedParkingSi
     };
 
     return (
-        <div className="relative flex h-full w-full flex-col overflow-y-scroll rounded-lg border p-6">
+        <div className="relative flex h-full w-full flex-col overflow-y-scroll rounded-lg border p-6 pb-4">
             <div className="mb-2 flex justify-between">
                 <h2 className="w-3/5 text-lg font-bold text-gray-800">{parkingSite.name}</h2>
                 <span
@@ -63,7 +63,7 @@ function ParkingListItemDetail({ setShowModal, parkingSite, setSelectedParkingSi
                 </div>
             </div>
             <hr />
-            <div className="flex flex-col items-center justify-center pt-4 pb-14">
+            <div className="flex flex-col items-center justify-center pt-4 pb-2">
                 <p className="mb-3 text-lg font-bold text-gray-800">How to Park</p>
                 <div className="flex items-start justify-around">
                     <div className="flex w-1/3 flex-col items-center p-2">
@@ -96,7 +96,7 @@ function ParkingListItemDetail({ setShowModal, parkingSite, setSelectedParkingSi
                 onClick={() => handleBookClick(parkingSite)}
                 className={`${
                     parkingSite.availableSpot > 0 ? 'bg-blue-main' : 'pointer-events-none bg-gray-400'
-                } fixed bottom-4 w-96 transform rounded-md  p-4 font-bold text-white shadow-2xl hover:bg-blue-main-hover hover:ring-4 hover:ring-blue-main-ring active:ring-blue-main-ring`}
+                } sticky bottom-0 w-full transform rounded-md p-4 font-bold text-white shadow-2xl hover:bg-blue-main-hover hover:ring-4 hover:ring-blue-main-ring active:ring-blue-main-ring`}
             >
                 Book now
             </button>
