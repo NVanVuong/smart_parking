@@ -7,6 +7,8 @@ import FilterDistance from './FilterDistance';
 
 function Map({
     mapRef,
+    toggle,
+    setToggle,
     position,
     setPosition,
     distance,
@@ -48,7 +50,7 @@ function Map({
     }, [currentFilter]);
 
     return (
-        <div className="relative h-full w-full">
+        <div className={`${!toggle ? 'hidden' : 'block'} relative h-full w-full md:block`}>
             <MapContainer ref={mapRef} center={position || [0, 0]} zoom={14} scrollWheelZoom>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -57,6 +59,8 @@ function Map({
                 {parkingSitesCurrent.map((parkingSite) => (
                     <ParkingSiteMarker
                         key={parkingSite._id}
+                        toggle={toggle}
+                        setToggle={setToggle}
                         parkingSite={parkingSite}
                         setShowModal={setShowModal}
                         setCurrentFilter={setCurrentFilter}

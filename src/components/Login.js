@@ -43,8 +43,11 @@ function Login() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="relative my-auto flex h-full flex-col justify-center overflow-hidden">
-            <div className="m-auto w-full rounded-md bg-white p-6 shadow-md lg:max-w-xl">
+        <form
+            onSubmit={handleSubmit}
+            className="relative my-auto mx-auto flex h-fit w-5/6 flex-col justify-center overflow-hidden rounded-md shadow-md md:w-1/3"
+        >
+            <div className="m-auto w-full bg-white p-6 lg:max-w-xl">
                 <h1 className="text-center text-3xl font-semibold text-blue-main underline">Sign in</h1>
 
                 <div className="mb-2">
@@ -78,10 +81,10 @@ function Login() {
                 <Link to={'/login'} className="text-xs text-blue-main hover:underline">
                     Forget Password?
                 </Link>
-                <div className="mt-6">
+                <div className="mt-2">
                     <button
                         type="submit"
-                        className="w-full transform rounded-md bg-blue-main px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-blue-main-hover focus:bg-blue-main-ring focus:outline-none"
+                        className="w-full transform rounded-md bg-blue-main px-4 py-2 tracking-wide text-white shadow-md transition-colors duration-200 hover:bg-blue-main-hover focus:bg-blue-main-ring focus:outline-none"
                     >
                         Sign in
                     </button>
