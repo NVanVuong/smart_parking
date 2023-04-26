@@ -8,6 +8,7 @@ import FilterDistance from './FilterDistance';
 function Map({
     mapRef,
     toggle,
+    setToggle,
     position,
     setPosition,
     distance,
@@ -58,6 +59,8 @@ function Map({
                 {parkingSitesCurrent.map((parkingSite) => (
                     <ParkingSiteMarker
                         key={parkingSite._id}
+                        toggle={toggle}
+                        setToggle={setToggle}
                         parkingSite={parkingSite}
                         setShowModal={setShowModal}
                         setCurrentFilter={setCurrentFilter}

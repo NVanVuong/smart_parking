@@ -1,9 +1,10 @@
 import { Marker, Popup } from 'react-leaflet';
 import { parkingSiteMarker } from '../assets/icons/index';
 
-function ParkingSiteMarker({ setShowModal, setCurrentFilter, parkingSite, setSelectedParkingSite }) {
+function ParkingSiteMarker({ setShowModal, toggle, setToggle, setCurrentFilter, parkingSite, setSelectedParkingSite }) {
     const handleDetailClick = (parkingSite) => {
         setSelectedParkingSite(parkingSite);
+        setToggle(!toggle);
         setCurrentFilter('detail');
     };
 

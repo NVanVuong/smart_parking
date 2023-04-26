@@ -72,13 +72,17 @@ function ParkingList({
     };
 
     return (
-        <div className={`${toggle ? 'hidden' : 'block'} relative h-full w-full overflow-y-hidden md:block md:w-2/5`}>
+        <div
+            className={`${
+                toggle ? 'hidden' : 'block'
+            } relative h-full w-full overflow-y-hidden md:block md:w-2/3 xl:w-2/5`}
+        >
             <SearchUser searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} handleSearch={handleSearch} />
-            <ul className="flex h-10 items-end justify-center space-x-4 border-b px-4 pb-1.5">
+            <ul className="flex h-10 items-end justify-center space-x-4 border-b px-4 pb-1.5 md:space-x-3">
                 <li
                     className={`${
                         currentFilter === 'all' ? ' border-blue-main ' : 'border-transparent '
-                    }  cursor-pointer border-b-2 px-2 pb-1 text-sm font-medium text-gray-500 transition-all duration-500 hover:text-blue-main`}
+                    }  cursor-pointer border-b-2 px-2 pb-1 text-sm font-medium text-gray-500 transition-all duration-500 hover:text-blue-main md:px-1 lg:px-2`}
                     onClick={() => handleFilterChange('all')}
                 >
                     View all
@@ -86,7 +90,7 @@ function ParkingList({
                 <li
                     className={`${
                         currentFilter === 'closest' ? 'border-blue-main ' : 'border-transparent'
-                    } cursor-pointer border-b-2 px-2 pb-1 text-sm font-medium  text-gray-500 transition-all duration-500 hover:text-blue-main `}
+                    } cursor-pointer border-b-2 px-2 pb-1 text-sm font-medium text-gray-500  transition-all duration-500 hover:text-blue-main md:px-1 lg:px-2 `}
                     onClick={() => handleFilterChange('closest')}
                 >
                     Closest
@@ -94,7 +98,7 @@ function ParkingList({
                 <li
                     className={`${
                         currentFilter === 'cheapest' ? 'border-blue-main ' : 'border-transparent'
-                    } cursor-pointer border-b-2 px-2 pb-1 text-sm font-medium  text-gray-500 transition-all duration-500 hover:text-blue-main `}
+                    } cursor-pointer border-b-2 px-2 pb-1 text-sm font-medium text-gray-500  transition-all duration-500 hover:text-blue-main md:px-1 lg:px-2 `}
                     onClick={() => handleFilterChange('cheapest')}
                 >
                     Cheapest
@@ -102,7 +106,7 @@ function ParkingList({
                 <li
                     className={`${
                         currentFilter === 'detail' ? 'border-blue-main ' : 'border-transparent'
-                    } pointer-events-none cursor-pointer border-b-2  px-2 pb-1 text-sm font-medium  text-gray-500 transition-all duration-500 hover:text-blue-main`}
+                    } pointer-events-none cursor-pointer border-b-2  px-2 pb-1 text-sm font-medium text-gray-500  transition-all duration-500 hover:text-blue-main md:px-1 lg:px-2`}
                     onClick={() => handleFilterChange('detail')}
                 >
                     Detail

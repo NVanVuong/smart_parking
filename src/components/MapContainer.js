@@ -140,6 +140,7 @@ function MapContainer() {
             <Map
                 mapRef={mapRef}
                 toggle={toogle}
+                setToggle={setToggle}
                 position={position}
                 setPosition={setPosition}
                 distance={distance}

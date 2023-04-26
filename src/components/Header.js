@@ -31,7 +31,7 @@ function Header() {
                 {auth.account?.type === 'admin' ? (
                     <Link
                         to="/admin"
-                        className="mr-6 rounded border-2 border-solid border-blue-main py-3 px-2.5 text-xs font-bold tracking-wider text-blue-main duration-300 hover:ring-4 hover:ring-blue-main-ring"
+                        className="mr-2 rounded border-2 border-solid border-blue-main py-3 px-2.5 text-xs font-bold tracking-wider text-blue-main duration-300 hover:ring-4 hover:ring-blue-main-ring md:mr-6"
                     >
                         ADMIN
                     </Link>
