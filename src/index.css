@@ -10,7 +10,6 @@
 
 :root {
     --toastify-color-success: #2ab7df !important;
-    /* --toastify-icon-color-success: var(--toastify-color-success); */
 }
 
 input[type='search'] {

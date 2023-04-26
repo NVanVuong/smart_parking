@@ -11,11 +11,20 @@ function ParkingListItem({ mapRef, setShowModal, setCurrentFilter, parkingSite, 
     };
 
     return (
-        <div className={`border px-6 py-3`}>
+        <div className="relative border px-6 py-3">
+            <div
+                className={`${
+                    parkingSite.availableSpot > 0 ? 'hidden' : 'block'
+                } absolute inset-0 w-full bg-gray-200 bg-opacity-40`}
+            ></div>
             <div>
                 <div className="flex justify-between">
                     <div className="mb-2 w-4/6 text-lg font-semibold">{parkingSite.name}</div>
-                    <div className="mb-2 flex items-center text-2xl font-semibold text-blue-main">
+                    <div
+                        className={`${
+                            parkingSite.availableSpot > 0 ? 'text-blue-main' : 'text-gray-400'
+                        } mb-2 flex items-center text-2xl font-semibold text-blue-main`}
+                    >
                         {parkingSite.price}
                         <span className="ml-1 text-sm">đ</span>
                     </div>
@@ -48,7 +57,7 @@ function ParkingListItem({ mapRef, setShowModal, setCurrentFilter, parkingSite, 
                     </button>
                     <button
                         onClick={() => handleDetailClick(parkingSite)}
-                        className="rounded-sm py-2 px-4 font-semibold text-blue-main hover:ring-4 hover:ring-blue-main-ring active:ring-blue-main-ring "
+                        className="z-50 rounded-sm py-2 px-4 font-semibold text-blue-main hover:ring-4 hover:ring-blue-main-ring active:ring-blue-main-ring "
                     >
                         Detail
                     </button>

@@ -15,7 +15,11 @@ function ParkingListItemDetail({ setShowModal, parkingSite, setSelectedParkingSi
         <div className="relative flex h-full w-full flex-col overflow-y-scroll rounded-lg border p-6">
             <div className="mb-2 flex justify-between">
                 <h2 className="w-3/5 text-lg font-bold text-gray-800">{parkingSite.name}</h2>
-                <span className="flex items-start text-3xl font-semibold text-blue-main">
+                <span
+                    className={`${
+                        parkingSite.availableSpot > 0 ? 'text-blue-main' : 'text-gray-400'
+                    } flex items-start text-3xl font-semibold `}
+                >
                     {parkingSite.price}
                     <span className="ml-1 text-base">đ</span>
                 </span>
