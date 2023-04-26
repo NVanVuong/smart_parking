@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { ToastContainer } from 'react-toastify';
-import { FaRegListAlt } from 'react-icons/fa';
-import { TbMap2 } from 'react-icons/tb';
 import adminApi, { category } from '~/api/adminApi';
 import userApi from '~/api/userApi';
 import Map from './Map';
 import ParkingList from './ParkingList';
 import ModalBooking from './ModalBooking';
+import Toggle from './Toggle';
 
 function MapContainer() {
     const [parkingSites, setParkingSites] = useState([]);
@@ -19,7 +18,7 @@ function MapContainer() {
     const [currentFilter, setCurrentFilter] = useState('all');
     const [selectedParkingSite, setSelectedParkingSite] = useState(null);
     const [showModal, setShowModal] = useState('');
-    const [toogle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(false);
     const mapRef = useRef(null);
 
     useEffect(() => {
@@ -98,32 +97,13 @@ function MapContainer() {
     }, [currentFilter, parkingSitesNearBy, parkingSites, parkingSitesCurrent]);
 
     return (
-        <div className="flex max-h-full flex-1 grow flex-col overflow-hidden md:flex-row">
+        <div className="relative flex max-h-full flex-1 grow flex-col overflow-hidden md:flex-row">
             <ToastContainer />
             <ModalBooking parkingSite={selectedParkingSite} showModal={showModal} setShowModal={setShowModal} />
-            <div className="block md:hidden">
-                {toogle ? (
-                    <span
-                        onClick={() => setToggle(!toogle)}
-                        className="flex items-center justify-center text-blue-main"
-                    >
-                        {' '}
-                        <FaRegListAlt />{' '}
-                        <span className="ml-2 cursor-pointer py-2.5 text-xs font-semibold">LIST VIEW</span>
-                    </span>
-                ) : (
-                    <span
-                        onClick={() => setToggle(!toogle)}
-                        className="flex items-center justify-center text-blue-main"
-                    >
-                        {' '}
-                        <TbMap2 /> <span className="ml-2 cursor-pointer py-2.5 text-xs font-semibold">VIEW IN MAP</span>
-                    </span>
-                )}
-            </div>
+            <Toggle toggle={toggle} setToggle={setToggle} />
             <ParkingList
                 mapRef={mapRef}
-                toggle={toogle}
+                toggle={toggle}
                 setCenter={setCenter}
                 searchKeyword={searchKeyword}
                 handleSearch={handleSearch}
@@ -139,7 +119,7 @@ function MapContainer() {
             />
             <Map
                 mapRef={mapRef}
-                toggle={toogle}
+                toggle={toggle}
                 setToggle={setToggle}
                 position={position}
                 setPosition={setPosition}
