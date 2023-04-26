@@ -31,7 +31,7 @@ function Pagination({ items, totalPages, currentPage, setCurrentPage }) {
                     key={number}
                     className={`${
                         currentPage === number && 'rounded-md border-none bg-[#2ab7df] text-white hover:text-white'
-                    } mx-1 flex h-10 w-10 items-center justify-center rounded-md  px-3 py-2 transition duration-300 hover:text-[#2ab7df] hover:ring-4 hover:ring-[#2ab8df66]`}
+                    } mx-1 flex h-10 w-10 cursor-pointer items-center justify-center rounded-md  px-3 py-2 transition duration-300 hover:text-[#2ab7df] hover:ring-4 hover:ring-[#2ab8df66]`}
                     onClick={() => setCurrentPage(number)}
                 >
                     {number}
@@ -45,7 +45,7 @@ function Pagination({ items, totalPages, currentPage, setCurrentPage }) {
             <li
                 className={`${
                     currentPage === 1 && 'pointer-events-none text-gray-300'
-                } mx-1 flex h-10 rounded-md px-3 py-2 transition duration-300  hover:text-[#2ab7df] hover:ring-4 hover:ring-[#2ab8df66]`}
+                } mx-1 flex h-10 cursor-pointer rounded-md px-3 py-2 transition duration-300  hover:text-[#2ab7df] hover:ring-4 hover:ring-[#2ab8df66]`}
                 onClick={() => setCurrentPage(currentPage - 1)}
             >
                 Prev
@@ -54,7 +54,7 @@ function Pagination({ items, totalPages, currentPage, setCurrentPage }) {
             <li
                 className={`${
                     currentPage === totalPages && 'pointer-events-none text-gray-300'
-                } mx-1 flex h-10 rounded-md  px-3 py-2 transition duration-300 hover:text-[#2ab7df] hover:ring-4 hover:ring-[#2ab8df66]`}
+                } mx-1 flex h-10 cursor-pointer rounded-md  px-3 py-2 transition duration-300 hover:text-[#2ab7df] hover:ring-4 hover:ring-[#2ab8df66]`}
                 onClick={() => setCurrentPage(currentPage + 1)}
             >
                 Next

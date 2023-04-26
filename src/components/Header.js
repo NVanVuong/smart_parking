@@ -66,11 +66,14 @@ function Header() {
                         </button>
                         {open && (
                             <div className="absolute right-2 top-6 z-[99999] mt-2 w-36 origin-top-right rounded-md bg-white shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                <ul className="py-1">
-                                    <li className="flex cursor-pointer items-center space-x-4 bg-white px-4 py-2 text-sm text-gray-900 duration-300 hover:bg-gray-100 ">
+                                <ul onClick={() => setOpen(!open)} className="py-1">
+                                    <Link
+                                        to={`/${auth.account.username}`}
+                                        className="flex cursor-pointer items-center space-x-4 bg-white px-4 py-2 text-sm text-gray-900 duration-300 hover:bg-gray-100 "
+                                    >
                                         <ImProfile className="mr-2 text-lg" />
                                         Profile
-                                    </li>
+                                    </Link>
                                     <li
                                         onClick={auth.logout}
                                         className="flex cursor-pointer items-center bg-white px-4 py-2 text-sm text-gray-900 duration-300 hover:bg-gray-100 "
