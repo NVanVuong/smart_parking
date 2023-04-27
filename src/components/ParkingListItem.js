@@ -2,7 +2,7 @@ function ParkingListItem({ mapRef, setShowModal, setCurrentFilter, parkingSite, 
     const handleDetailClick = (parkingSite) => {
         setCurrentFilter('detail');
         setSelectedParkingSite(parkingSite);
-        mapRef.current.setView(parkingSite.position, 16);
+        mapRef.current.flyTo(parkingSite.position, 16);
     };
 
     const handleBookClick = (parkingSite) => {

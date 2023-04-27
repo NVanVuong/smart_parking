@@ -17,7 +17,7 @@ function MapContainer() {
     const [searchKeyword, setSearchKeyword] = useState('');
     const [currentFilter, setCurrentFilter] = useState('all');
     const [selectedParkingSite, setSelectedParkingSite] = useState(null);
-    const [showModal, setShowModal] = useState('');
+    const [showModal, setShowModal] = useState(false);
     const [toggle, setToggle] = useState(false);
     const mapRef = useRef(null);
 
