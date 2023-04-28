@@ -30,7 +30,7 @@ function Map({
         console.log(position);
         getParkingNearBy([position[0], position[1]], distance);
         if (mapRef.current) {
-            mapRef.current.flyTo(position, 15);
+            mapRef.current.flyTo(position, 14);
         }
     };
 
@@ -51,9 +51,9 @@ function Map({
 
     return (
         <div className={`${!toggle ? 'hidden' : 'block'} relative h-full w-full md:block`}>
-            <MapContainer ref={mapRef} center={position || [0, 0]} zoom={14} scrollWheelZoom={false}>
+            <MapContainer ref={mapRef} center={position || [0, 0]} zoom={13} scrollWheelZoom>
                 <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 {parkingSitesCurrent.map((parkingSite) => (

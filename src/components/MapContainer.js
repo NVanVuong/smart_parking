@@ -18,7 +18,7 @@ function MapContainer() {
     const [currentFilter, setCurrentFilter] = useState('all');
     const [selectedParkingSite, setSelectedParkingSite] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(true);
     const mapRef = useRef(null);
 
     useEffect(() => {
