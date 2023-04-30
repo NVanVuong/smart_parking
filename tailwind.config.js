@@ -8,6 +8,9 @@ module.exports = {
                 'blue-main-hover': '#2ab8dfe6',
                 'blue-main-ring': '#2ab8df66',
             },
+            fontFamily: {
+                montserrat: ['Montserrat', 'sans-serif'],
+            },
         },
     },
     plugins: [],

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { MapPin, MagnifyingGlass, X } from '@phosphor-icons/react';
 
 function SearchUser({
@@ -39,6 +39,7 @@ function SearchUser({
 
     useEffect(() => {
         handleLoad();
+        // eslint-disable-next-line
     }, []);
 
     const handleChange = (e) => {
