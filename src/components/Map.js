@@ -4,7 +4,6 @@ import { BiCurrentLocation } from 'react-icons/bi';
 import ParkingSiteMarker from './ParkingSiteMarker';
 import LocationMarker from './LocationMarker';
 import FilterDistance from './FilterDistance';
-
 function Map({
     mapRef,
     toggle,
@@ -27,7 +26,6 @@ function Map({
 
     const handleLocationIconClick = () => {
         setCenter(position);
-        console.log(position);
         getParkingNearBy([position[0], position[1]], distance);
         if (mapRef.current) {
             mapRef.current.flyTo(position, 14);
@@ -89,7 +87,6 @@ function Map({
                 distance={distance}
                 setDistance={setDistance}
                 center={center}
-                setCenter={setCenter}
                 setCurrentFilter={setCurrentFilter}
                 getParkingNearBy={getParkingNearBy}
             />

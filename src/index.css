@@ -7,9 +7,23 @@
 @import url('leaflet/dist/leaflet.css');
 @import url('react-toastify/dist/ReactToastify.css');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* @import url('https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.css'); */
 
 :root {
     --toastify-color-success: #2ab7df !important;
+}
+
+/* Đổi màu của thanh scroll bar */
+::-webkit-scrollbar {
+    /* background-color: #f5f5f5;
+    width: 6px; */
+    @apply w-[6px] bg-[#f5f5f5];
+}
+
+/* Đổi màu của thanh kéo */
+::-webkit-scrollbar-thumb {
+    /* background-color: #2ab8df99; */
+    @apply rounded-md bg-[rgba(42,184,223,0.7)];
 }
 
 input[type='search'] {
@@ -35,4 +49,40 @@ body {
 
 .css-eg0mwd-MuiSlider-thumb {
     @apply h-3 w-3 !important;
+}
+
+.mq-icon-clear {
+    @apply hidden !important;
+}
+
+.mq-input {
+    @apply rounded-none border-[0px] border-b-[1px] !important;
+}
+
+.mq-place-search {
+    @apply w-full !important;
+}
+
+.mq-result.mq-cursor:hover {
+    @apply bg-gray-100 !important;
+}
+
+.mq-result {
+    @apply grid grid-cols-10 grid-rows-2 gap-1 overflow-hidden rounded-md p-3 !important;
+}
+
+.mq-result-icon {
+    @apply col-span-1 row-span-2 flex w-fit items-center justify-center text-center !important;
+}
+
+.mq-name {
+    @apply col-span-9 m-0 p-0 text-sm !important;
+}
+
+.mq-address {
+    @apply col-span-9 m-0 p-0 text-xs text-gray-400 !important;
+}
+
+.mq-dropdown-menu {
+    @apply mt-1 w-full rounded-md bg-white shadow-md !important;
 }

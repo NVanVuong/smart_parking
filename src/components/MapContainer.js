@@ -105,6 +105,7 @@ function MapContainer() {
                 mapRef={mapRef}
                 toggle={toggle}
                 setCenter={setCenter}
+                distance={distance}
                 searchKeyword={searchKeyword}
                 handleSearch={handleSearch}
                 setSearchKeyword={setSearchKeyword}
@@ -113,6 +114,7 @@ function MapContainer() {
                 setCurrentFilter={setCurrentFilter}
                 parkingSites={parkingSites}
                 parkingSitesNearBy={parkingSitesNearBy}
+                getParkingNearBy={getParkingNearBy}
                 parkingSitesCurrent={parkingSitesCurrent}
                 selectedParkingSite={selectedParkingSite}
                 setSelectedParkingSite={setSelectedParkingSite}
