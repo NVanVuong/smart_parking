@@ -67,10 +67,8 @@ function Accounts() {
             await getAccounts();
         } else {
             setShowModal(false);
-            // setLoading(true);
             await getAccounts();
             await handleSearch(searchKeyword);
-            // setLoading(false);
         }
     };
 

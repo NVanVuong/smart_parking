@@ -6,12 +6,15 @@ function ParkingList({
     mapRef,
     toggle,
     searchKeyword,
+    setCenter,
     setSearchKeyword,
     handleSearch,
     setShowModal,
     currentFilter,
     setCurrentFilter,
     parkingSites,
+    getParkingNearBy,
+    distance,
     parkingSitesNearBy,
     parkingSitesCurrent,
     selectedParkingSite,
@@ -77,7 +80,16 @@ function ParkingList({
                 toggle ? 'hidden' : 'block'
             } relative h-full w-full overflow-y-hidden md:block md:w-2/3 xl:w-2/5`}
         >
-            <SearchUser searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} handleSearch={handleSearch} />
+            <SearchUser
+                mapRef={mapRef}
+                getParkingNearBy={getParkingNearBy}
+                setCurrentFilter={setCurrentFilter}
+                distance={distance}
+                setCenter={setCenter}
+                searchKeyword={searchKeyword}
+                setSearchKeyword={setSearchKeyword}
+                handleSearch={handleSearch}
+            />
             <ul className="flex h-10 items-end justify-center space-x-4 border-b px-4 pb-1.5 md:space-x-3">
                 <li
                     className={`${
