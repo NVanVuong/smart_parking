@@ -7,31 +7,27 @@
 @import url('leaflet/dist/leaflet.css');
 @import url('react-toastify/dist/ReactToastify.css');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-/* @import url('https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.css'); */
 
 :root {
     --toastify-color-success: #2ab7df !important;
 }
 
-/* Đổi màu của thanh scroll bar */
 ::-webkit-scrollbar {
-    /* background-color: #f5f5f5;
-    width: 6px; */
     @apply w-[6px] bg-[#f5f5f5];
 }
 
-/* Đổi màu của thanh kéo */
 ::-webkit-scrollbar-thumb {
-    /* background-color: #2ab8df99; */
     @apply rounded-md bg-[rgba(42,184,223,0.7)];
+}
+
+@layer base {
+    body {
+        @apply font-montserrat;
+    }
 }
 
 input[type='search'] {
     @apply appearance-none rounded-none !important;
-}
-
-body {
-    font-family: 'Montserrat', sans-serif;
 }
 
 .awesome-marker .fa-circle {
