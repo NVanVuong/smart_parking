@@ -61,7 +61,7 @@ function Header() {
                                 open && 'text-blue-main'
                             } group mr-2 flex items-center rounded-[5px] text-center text-sm font-bold leading-none tracking-wider text-black transition  hover:text-blue-main active:scale-105`}
                         >
-                            {auth.account.username}
+                            {auth?.account?.username}
                             <FaUserCircle className="ml-1 text-2xl" />
                         </button>
                         {open && (

@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
                 setToken(value);
 
                 axios
-                    .post('http://127.0.0.1:5000/decode', { token: value })
+                    .post('https://pbl5-parking-api.onrender.com/decode', { token: value })
                     .then((response) => {
                         console.log(response?.data?.data?.account);
                         setAccount(response?.data?.data?.account);
