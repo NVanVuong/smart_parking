@@ -11,19 +11,19 @@ function SearchUser({
     setSearchKeyword,
     handleSearch,
 }) {
-    const handleLoad = () => {
+    const handleLoad = async () => {
         const search = window.placeSearch({
             key: '7ahjYGQ2gE1llpVDhdf0omSjooM8rgxt',
             container: document.getElementById('search-input'),
-            useDeviceLocation: true,
-            collection: ['poi', 'airport', 'address', 'adminArea', 'city'],
+            // useDeviceLocation: true,
+            collection: ['poi', 'airport', 'address', 'adminArea', 'city', 'country'],
         });
 
-        search.on('change', (e) => {
+        search.on('change', async (e) => {
             console.log(e.result);
             const location = e.result.latlng;
             setCenter([location.lat, location.lng]);
-            getParkingNearBy([location.lat, location.lng], distance);
+            await getParkingNearBy([location.lat, location.lng], distance);
             mapRef.current.flyTo([location.lat, location.lng], 14);
             setCurrentFilter('closest');
             search.setVal(e.result.name);
