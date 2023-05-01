@@ -26,7 +26,7 @@ function Map({
 
     const handleLocationIconClick = () => {
         setCenter(position);
-        getParkingNearBy([position[0], position[1]], distance);
+        getParkingNearBy([position.lat, position.lng], distance);
         if (mapRef.current) {
             mapRef.current.flyTo(position, 14);
         }
