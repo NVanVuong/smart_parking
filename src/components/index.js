@@ -7,3 +7,7 @@ export { default as Tickets } from '~/components/Tickets';
 export { default as MapContainer } from '~/components/MapContainer';
 export { default as Login } from '~/components/Login';
 export { default as Signup } from '~/components/Signup';
+export { default as Information } from '~/components/Infomation';
+export { default as Reservation } from '~/components/Reservation';
+export { default as Password } from '~/components/Password';
+export { default as ProfileBar } from '~/components/ProfileBar';

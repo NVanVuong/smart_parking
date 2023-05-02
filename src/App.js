@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { path } from '~/ultils/contains';
-import { Admin, Home } from './contains/public';
+import { Admin, Home, Profile } from './contains/public';
 import { RequireAuth } from '~/hooks/requireAuth';
 function App() {
     return (
@@ -15,6 +15,7 @@ function App() {
                         </RequireAuth>
                     }
                 />
+                <Route path={path.PROFILE} element={<Profile />} />
             </Routes>
         </div>
     );

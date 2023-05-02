@@ -1,11 +1,12 @@
 import { useState, useEffect, Fragment } from 'react';
+import { useAuth } from '~/hooks/auth';
 import { Plus, Trash, Pencil, CheckCircle, XCircle, Info } from '@phosphor-icons/react';
 import adminApi, { category } from '~/api/adminApi';
 import Loading from './Loading';
 import SearchAdmin from './SearchAdmin';
 import ModalAccount from './ModalAccount';
 import Pagination from './Pagination';
-import { useAuth } from '~/hooks/auth';
+import AccountBadge from './AccountBadge';
 
 function Accounts() {
     const auth = useAuth();
@@ -80,7 +81,7 @@ function Accounts() {
     };
 
     return !loading ? (
-        <div className="flex grow flex-col">
+        <div className="flex grow flex-col overflow-hidden overscroll-none">
             <ModalAccount
                 showModal={showModal}
                 modeModal={modeModal}
@@ -99,7 +100,7 @@ function Accounts() {
                     handleSearch={handleSearch}
                 />
                 <span className="mx-2 h-9 border md:mx-4"></span>
-                <p className="mr-4 text-xs font-semibold md:mr-8 md:text-sm">{auth.account.username}</p>
+                <AccountBadge auth={auth} />
             </div>
             <button
                 onClick={() => handleModal('Add', null)}
@@ -108,7 +109,7 @@ function Accounts() {
                 <Plus size={20} weight="bold" className=" mr-1 drop-shadow-md transition-all duration-500 " />
                 <span className="mr-1 text-sm">Add new</span>
             </button>
-            <div className="mx-4 border border-gray-200 shadow sm:rounded-lg md:mx-8">
+            <div className="mx-4 border border-gray-200 shadow sm:rounded-lg md:ml-8">
                 <table className="w-full divide-y divide-gray-200 ">
                     <thead className="bg-gray-50">
                         <tr className="grid grid-cols-4 md:grid-cols-9">
