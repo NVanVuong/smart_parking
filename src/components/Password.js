@@ -2,7 +2,7 @@ import { useState } from 'react';
 import userApi from '../api/userApi';
 import Loading from './Loading';
 import { HiOutlineCheckCircle, HiOutlineXCircle } from 'react-icons/hi';
-import { BsFillEyeFill, BsEyeSlashFill, BsEyeFill } from 'react-icons/bs';
+import { BsEyeSlashFill, BsEyeFill } from 'react-icons/bs';
 
 export default function Password({ auth }) {
     const [password, setPassword] = useState({
