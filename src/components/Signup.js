@@ -81,10 +81,10 @@ function Signup() {
     return (
         <form
             onSubmit={handleSubmit}
-            className="relative mx-auto mt-12 flex h-fit w-5/6 flex-col justify-center overflow-hidden rounded-md shadow-md md:w-1/3"
+            className="relative mx-auto mt-10 flex h-fit w-5/6 flex-col justify-center overflow-hidden rounded-md shadow-md md:w-1/3"
         >
             <div className="m-auto w-full bg-white px-6 py-4 lg:max-w-xl">
-                <h1 className="text-center text-3xl font-semibold text-blue-main underline">Sign up</h1>
+                <h1 className="mb-2 text-center text-3xl font-semibold text-blue-main">Sign up</h1>
                 <div className="mb-2">
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-800">
                         Name

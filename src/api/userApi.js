@@ -19,6 +19,10 @@ const userApi = {
     getMyReservation: () => {
         return axiosClient.get(`/reservation/myreserve`);
     },
+    searchMyReservation: (keyword) => {
+        const params = qs.stringify({ keyword });
+        return axiosClient.get(`/reservation/myreserve?${params}`);
+    },
     bookReservation: (params = {}) => {
         return axiosClient.post('/reservation', { ...params });
     },

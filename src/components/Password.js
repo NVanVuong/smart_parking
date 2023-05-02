@@ -47,7 +47,7 @@ export default function Password({ auth }) {
     };
 
     return !loading ? (
-        <div className="mx-auto mt-12 h-fit w-4/5 md:w-1/4">
+        <div className="mx-auto mt-16 h-fit w-4/5 md:w-1/3 lg:w-1/4">
             <h2 className="mb-4 text-center text-xl font-medium text-gray-500">Change Password</h2>
             {error && (
                 <div
@@ -128,7 +128,7 @@ export default function Password({ auth }) {
                 </div>
                 <div className="flex items-center justify-end">
                     <button
-                        className="focus:shadow-outline rounded bg-blue-main py-2 px-4 font-bold text-white hover:ring-4 hover:ring-blue-main-ring active:bg-blue-main-ring"
+                        className="focus:shadow-outline rounded bg-blue-main py-2 px-4 text-sm font-semibold text-white hover:ring-4 hover:ring-blue-main-ring active:bg-blue-main-ring"
                         type="submit"
                     >
                         Submit

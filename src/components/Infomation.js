@@ -18,7 +18,7 @@ function Information({ auth }) {
             getAccount();
         }
         // eslint-disable-next-line
-    }, []);
+    }, [auth]);
 
     const getAccount = async () => {
         const response = await userApi.getAccount(auth?.account?._id);
@@ -36,7 +36,7 @@ function Information({ auth }) {
     };
 
     return !loading ? (
-        <div className="mx-auto mt-12 flex flex-col items-center justify-center py-10 md:mt-0">
+        <div className="mx-auto mt-16 flex flex-col items-center py-10">
             <ModalInfo
                 showModal={showModal}
                 currentAccount={account}

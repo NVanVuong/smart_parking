@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { useAuth } from '~/hooks/auth';
 import { Link, useLocation } from 'react-router-dom';
 import { BiUserPin, BiLogOut } from 'react-icons/bi';
 import { HiOutlineTicket } from 'react-icons/hi';
 import { RiLockPasswordLine } from 'react-icons/ri';
 
-function ProfileBar() {
-    const auth = useAuth();
+function ProfileBar({ auth }) {
+    console.log(auth);
     const location = useLocation();
     const [open, setOpen] = useState(false);
 
@@ -15,13 +14,16 @@ function ProfileBar() {
             setOpen(!open);
         }
     };
-
     const menus = [
         { title: 'Information', path: `/profile/${auth?.account?.username}`, icon: <BiUserPin /> },
         { title: 'Password', path: `/profile/password`, icon: <RiLockPasswordLine /> },
-        { title: 'Reservation', path: `/profile/reservation`, icon: <HiOutlineTicket /> },
+        auth.account?.type === 'user' && {
+            title: 'Reservation',
+            path: `/profile/reservation`,
+            icon: <HiOutlineTicket />,
+        },
         { title: 'Log out', path: '/', icon: <BiLogOut /> },
-    ];
+    ].filter((item) => item);
 
     return (
         <>

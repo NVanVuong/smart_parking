@@ -4,7 +4,7 @@ export const path = {
     SIGNUP: 'signup',
 
     PROFILE: 'profile/*',
-    INFORMATION: ':id',
+    INFORMATION: ':username',
     PASSWORD: 'password',
     RESERVATION: 'reservation',
 
