@@ -17,7 +17,8 @@ function Information({ auth }) {
         if (auth?.account?._id) {
             getAccount();
         }
-    }, [auth]);
+        // eslint-disable-next-line
+    }, []);
 
     const getAccount = async () => {
         const response = await userApi.getAccount(auth?.account?._id);
