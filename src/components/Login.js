@@ -48,7 +48,7 @@ function Login() {
             className="relative my-auto mx-auto flex h-fit w-5/6 flex-col justify-center overflow-hidden rounded-md shadow-md md:w-1/3"
         >
             <div className="m-auto w-full bg-white p-6 lg:max-w-xl">
-                <h1 className="text-center text-3xl font-semibold text-blue-main underline">Sign in</h1>
+                <h1 className="text-center text-3xl font-semibold text-blue-main underline">Login in</h1>
 
                 <div className="mb-2">
                     <label htmlFor="username" className="block text-sm font-semibold text-gray-800">
@@ -86,7 +86,7 @@ function Login() {
                         type="submit"
                         className="w-full transform rounded-md bg-blue-main px-4 py-2 tracking-wide text-white shadow-md transition-colors duration-200 hover:bg-blue-main-hover focus:bg-blue-main-ring focus:outline-none"
                     >
-                        Sign in
+                        Log in
                     </button>
                     <p className="pt-4 text-sm text-red-500">{mes}</p>
                 </div>

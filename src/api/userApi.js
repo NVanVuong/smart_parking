@@ -2,6 +2,12 @@ import axiosClient from './apiClient';
 import qs from 'qs';
 
 const userApi = {
+    getAccount: (id) => {
+        return axiosClient.get(`accounts/${id}`);
+    },
+    changePassword: (id, params) => {
+        return axiosClient.patch(`accounts/${id}/change-password`, { ...params });
+    },
     searchParkingSite: (keyword) => {
         const params = qs.stringify({ keyword });
         return axiosClient.get(`parkingsites?${params}`);

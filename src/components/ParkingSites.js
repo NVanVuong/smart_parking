@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useAuth } from '~/hooks/auth';
 import { Plus, Trash, Pencil, Info } from '@phosphor-icons/react';
 import adminApi, { category } from '~/api/adminApi';
 import SearchAdmin from './SearchAdmin';
 import Loading from './Loading';
 import ModalParkingSite from './ModalParkingSite';
 import Pagination from './Pagination';
-import { useAuth } from '~/hooks/auth';
+import AccountBadge from './AccountBadge';
 
 function ParkingSites() {
     const auth = useAuth();
@@ -115,7 +116,7 @@ function ParkingSites() {
     };
 
     return !loading ? (
-        <div className="relative flex grow flex-col">
+        <div className="relative flex grow flex-col overflow-hidden overscroll-none">
             <ModalParkingSite
                 showModal={showModal}
                 modeModal={modeModal}
@@ -136,7 +137,7 @@ function ParkingSites() {
                     handleSearch={handleSearch}
                 />
                 <span className="mx-2 h-9 border md:mx-4"></span>
-                <p className="mr-4 text-xs font-semibold md:mr-8 md:text-sm">{auth.account.username}</p>
+                <AccountBadge auth={auth} />
             </div>
             <button
                 onClick={() => handleModal('Add', null)}

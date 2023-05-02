@@ -66,7 +66,10 @@ function SearchAdmin({
                     />
                 </Link>
             </div>
-            <MagnifyingGlass className="mr-2 h-6 cursor-pointer text-4xl text-gray-400 md:text-xl" weight="bold" />
+            <MagnifyingGlass
+                className="mr-1 block h-6 cursor-pointer text-3xl text-gray-400 md:mr-2 md:text-xl"
+                weight="bold"
+            />
             <input
                 onKeyDown={handleKeyDown}
                 onChange={handleInputChange}
@@ -75,7 +78,7 @@ function SearchAdmin({
                 type="text"
                 name="search"
                 id="searchInput"
-                className=" h-[100%] w-full rounded-md text-base focus:outline-none"
+                className="h-[100%] w-full rounded-md text-sm placeholder:text-sm focus:outline-none md:text-base"
             />
             <X
                 onClick={handleClickClearInput}

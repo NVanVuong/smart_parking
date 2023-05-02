@@ -2,7 +2,11 @@ export const path = {
     HOME: '/*',
     LOGIN: 'login',
     SIGNUP: 'signup',
-    USER: ':id/*',
+
+    PROFILE: 'profile/*',
+    INFORMATION: ':id',
+    PASSWORD: 'password',
+    RESERVATION: 'reservation',
 
     ADMIN: 'admin/*',
     ACCOUNTS: 'accounts',
