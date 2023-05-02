@@ -10,7 +10,7 @@ function Profile() {
         <div className="flex h-screen flex-col">
             <Header />
             <div className="flex h-full w-full flex-col md:flex-row">
-                <ProfileBar />
+                <ProfileBar auth={auth} />
                 <Routes>
                     <Route path="/" element={<Navigate to={path.INFORMATION} />} />
                     <Route path={path.INFORMATION} element={<Information auth={auth} />} />

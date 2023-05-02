@@ -48,8 +48,7 @@ function Login() {
             className="relative my-auto mx-auto flex h-fit w-5/6 flex-col justify-center overflow-hidden rounded-md shadow-md md:w-1/3"
         >
             <div className="m-auto w-full bg-white p-6 lg:max-w-xl">
-                <h1 className="text-center text-3xl font-semibold text-blue-main underline">Login in</h1>
-
+                <h1 className="mb-2 text-center text-3xl font-semibold text-blue-main">Log in</h1>
                 <div className="mb-2">
                     <label htmlFor="username" className="block text-sm font-semibold text-gray-800">
                         Username

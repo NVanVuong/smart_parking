@@ -41,7 +41,7 @@ function Pagination({ items, totalPages, currentPage, setCurrentPage }) {
     };
 
     return (
-        <ul className="fixed bottom-20 flex h-10 w-fit font-medium text-gray-500 md:bottom-6">
+        <ul className="fixed bottom-[72px] flex h-10 w-fit font-medium text-gray-500 md:bottom-6">
             <li
                 className={`${
                     currentPage === 1 && 'pointer-events-none text-gray-300'
