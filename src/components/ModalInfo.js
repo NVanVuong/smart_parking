@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 
 export default function ModalInfo({ showModal, setShowModal, currentAccount, handleSave, exist }) {
     const [error, setError] = useState('');
-    const [errorInput, setErrorInput] = useState('');
+    // eslint-disable-next-lines
+    // const [errorInput, setErrorInput] = useState('');
     const accountFields = [
         {
             label: 'Name',
@@ -99,9 +100,9 @@ export default function ModalInfo({ showModal, setShowModal, currentAccount, han
                                                 autoComplete="off"
                                                 required
                                             />
-                                            {field.error && field.name === errorInput && (
+                                            {/* {field.error && field.name === errorInput && (
                                                 <div className="mt-1 text-sm text-red-500">{field.error}</div>
-                                            )}
+                                            )} */}
                                         </div>
                                     ))}
                                     <div className="mt-6 flex items-center justify-end rounded-b">
@@ -113,7 +114,7 @@ export default function ModalInfo({ showModal, setShowModal, currentAccount, han
                                             Close
                                         </button>
                                         <button
-                                            className={`ml-2 rounded bg-blue-main px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-200 ease-linear hover:ring-4 hover:ring-blue-main-ring focus:outline-none  active:bg-blue-main-ring active:bg-blue-main-ring`}
+                                            className={`ml-2 rounded bg-blue-main px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-200 ease-linear hover:ring-4 hover:ring-blue-main-ring focus:outline-none  active:bg-blue-main-ring`}
                                             type="submit"
                                         >
                                             Save
