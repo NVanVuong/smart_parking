@@ -27,7 +27,7 @@ export default function FilterDistance({
         };
     }, [filterRef, setShowFilter]);
 
-    const handleShowFilter = () => {
+    const handleClick = () => {
         setShowFilter(!showFilter);
     };
 
@@ -35,7 +35,7 @@ export default function FilterDistance({
         setDistance(e.target.value);
     };
 
-    const handleClick = () => {
+    const handleDoubleClick = () => {
         setShowRadius(!showRadius);
     };
 
@@ -43,6 +43,7 @@ export default function FilterDistance({
         setShowFilter(!showFilter);
         setCurrentFilter('closest');
         getParkingNearBy([center.lat, center.lng], distance);
+        setShowRadius(true);
     };
 
     return (
@@ -50,7 +51,7 @@ export default function FilterDistance({
             <button className="flex">
                 <AiOutlineTrademarkCircle
                     onClick={handleClick}
-                    onDoubleClick={handleShowFilter}
+                    onDoubleClick={handleDoubleClick}
                     className={`${
                         showRadius ? 'text-blue-main' : 'text-gray-400'
                     } rounded border-2 border-[#0003] bg-white p-1 text-[33px] `}

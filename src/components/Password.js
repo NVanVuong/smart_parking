@@ -47,7 +47,7 @@ export default function Password({ auth }) {
     };
 
     return !loading ? (
-        <div className="mx-auto mt-16 h-fit w-4/5 md:w-1/4">
+        <div className="mx-auto mt-12 h-fit w-4/5 md:w-1/4">
             <h2 className="mb-4 text-center text-xl font-medium text-gray-500">Change Password</h2>
             {error && (
                 <div
