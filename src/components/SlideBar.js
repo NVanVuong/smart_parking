@@ -20,7 +20,7 @@ function SideBar() {
     const menus = [
         { title: 'Accounts', path: '/admin/accounts', icon: <FaUserAlt /> },
         { title: 'Pariking Sites', path: '/admin/parkingsites', icon: <FaCarAlt /> },
-        { title: 'Tickets', path: '/admin/tickets', icon: <FaTicketAlt /> },
+        { title: 'Reservations', path: '/admin/reservations', icon: <FaTicketAlt /> },
         { title: 'Log out', path: '/', icon: <BiLogOut /> },
     ];
 

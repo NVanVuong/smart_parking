@@ -7,7 +7,7 @@ function Header() {
     const auth = useAuth();
 
     return (
-        <header className="flex items-center justify-between px-[15px] shadow-md md:shadow-none">
+        <header className="flex items-center justify-between pl-4 pr-4 shadow-md md:pr-8 md:shadow-none">
             <Link to="/" className="block border-0 bg-transparent bg-contain bg-no-repeat p-0">
                 <img src={smart_parking_rec} alt="Best Parking Logo" className="h-16 w-auto" />
             </Link>

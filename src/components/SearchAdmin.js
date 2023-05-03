@@ -84,12 +84,12 @@ function SearchAdmin({
                 onClick={handleClickClearInput}
                 className={`${
                     searchKeyword === '' && 'hidden'
-                } mr-4 h-6 cursor-pointer text-xl text-gray-400 duration-200 hover:text-blue-main`}
+                } mr-4 h-6 cursor-pointer text-3xl text-gray-400 duration-200 hover:text-blue-main md:text-xl`}
                 weight="bold"
             />
             {pageName === 'accounts' ? (
                 <FilterAccount showFilter={showFilter} setShowFilter={setShowFilter} type={type} setType={setType} />
-            ) : (
+            ) : pageName === 'parkingsites' ? (
                 <FilterParkingSite
                     showFilter={showFilter}
                     setShowFilter={setShowFilter}
@@ -99,7 +99,7 @@ function SearchAdmin({
                     available={available}
                     handleSearch={handleSearch}
                 />
-            )}
+            ) : null}
             <button
                 onClick={handleClickSearch}
                 className="ml-2 flex h-full items-center justify-center gap-x-1.5 rounded-md bg-blue-main px-3 py-2 text-xs font-semibold text-white shadow-sm transition duration-300  hover:ring-4 hover:ring-blue-main-ring md:ml-4 md:text-sm"

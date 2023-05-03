@@ -27,7 +27,7 @@ function AccountBadge({ auth }) {
                 onClick={() => setOpen(!open)}
                 className={`${
                     open && 'text-blue-main'
-                } group mr-2 flex items-center rounded-[5px] text-center text-xs font-bold leading-none tracking-wider text-black transition hover:text-blue-main  active:scale-105 md:text-sm`}
+                } group flex items-center rounded-[5px] text-center text-xs font-bold leading-none tracking-wider text-black transition hover:text-blue-main  active:scale-105 md:text-sm`}
             >
                 {auth?.account?.username}
                 <FaUserCircle className="ml-1 text-xl md:text-2xl" />

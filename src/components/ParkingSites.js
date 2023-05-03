@@ -126,7 +126,7 @@ function ParkingSites() {
                 handleSave={handleSave}
                 handleDelete={handleDelete}
             ></ModalParkingSite>
-            <div className="mb-3 flex h-14 items-center justify-between border-b-2 border-gray-200 focus-within:border-b-2 focus-within:border-blue-main focus-within:shadow-md md:mb-5 md:h-16">
+            <div className="mb-3 flex h-14 items-center justify-between border-b-2 border-gray-200 pr-4 focus-within:border-b-2 focus-within:border-blue-main focus-within:shadow-md md:mb-5 md:h-16 md:pr-8">
                 <SearchAdmin
                     searchKeyword={searchKeyword}
                     setSearchKeyword={setSearchKeyword}

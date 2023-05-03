@@ -4,12 +4,12 @@ export const path = {
     SIGNUP: 'signup',
 
     PROFILE: 'profile/*',
-    INFORMATION: ':username',
+    USERNAME: ':username',
     PASSWORD: 'password',
     RESERVATION: 'reservation',
 
     ADMIN: 'admin/*',
     ACCOUNTS: 'accounts',
     PARKINGSITES: 'parkingsites',
-    TICKETS: 'tickets',
+    RESERVATIONS: 'reservations',
 };

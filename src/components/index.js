@@ -3,7 +3,7 @@ export { default as SearchUser } from '~/components/SearchUser';
 export { default as SlideBar } from '~/components/SlideBar';
 export { default as ParkingSites } from '~/components/ParkingSites';
 export { default as Accounts } from '~/components/Accounts';
-export { default as Tickets } from '~/components/Tickets';
+export { default as ReservationAdmin } from '~/components/ReservationAdmin';
 export { default as MapContainer } from '~/components/MapContainer';
 export { default as Login } from '~/components/Login';
 export { default as Signup } from '~/components/Signup';
