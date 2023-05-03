@@ -13,9 +13,10 @@ function Profile() {
                 <ProfileBar auth={auth} />
                 <Routes>
                     <Route path="/" element={<Navigate to={path.INFORMATION} />} />
-                    <Route path={path.INFORMATION} element={<Information auth={auth} />} />
+                    {/* <Route path={`${path.USER}/` || `${path.ADMIN}/`} element={<Navigate to={path.INFORMATION} />} /> */}
+                    <Route path={path.USERNAME} element={<Information auth={auth} />} />
                     <Route path={path.PASSWORD} element={<Password auth={auth} />} />
-                    <Route path={path.RESERVATION} element={<Reservation auth={auth} />} />
+                    <Route path={path.RESERVATION} element={<Reservation />} />
                 </Routes>
             </div>
         </div>

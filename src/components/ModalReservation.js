@@ -1,4 +1,4 @@
-export default function ModalReservation({ showModal, setShowModal, reservation }) {
+export default function ModalReservation({ auth, showModal, setShowModal, reservation }) {
     const reservationFields = [
         {
             label: 'Id',
@@ -7,6 +7,10 @@ export default function ModalReservation({ showModal, setShowModal, reservation 
         {
             label: 'Parking site',
             name: 'parkingSite.name' || 'parkingSite[0].name',
+        },
+        auth?.account?.type === 'admin' && {
+            label: 'Account',
+            name: 'account.username' || 'account[0].username',
         },
         {
             label: 'Address',
@@ -28,7 +32,7 @@ export default function ModalReservation({ showModal, setShowModal, reservation 
             label: 'Number plate',
             name: 'lpNumber',
         },
-    ];
+    ].filter((item) => item);
 
     const handleClickOut = (event) => {
         if (event.target === event.currentTarget) {
@@ -43,7 +47,15 @@ export default function ModalReservation({ showModal, setShowModal, reservation 
         const value = name.split('.').reduce((obj, key) => obj?.[key], reservation);
 
         if (name === 'enteringTime' || name === 'reservingTime') {
-            return value?.substring(0, 10) ?? '---';
+            const timestamp = value;
+            const date = new Date(timestamp);
+            const formattedDate = date.toLocaleString();
+            console.log(typeof formattedDate);
+            if (formattedDate === 'Invalid Date') {
+                return '---';
+            } else {
+                return formattedDate;
+            }
         }
 
         return value ?? '---';
@@ -70,7 +82,7 @@ export default function ModalReservation({ showModal, setShowModal, reservation 
                                         </span>
                                     </button>
                                 </div>
-                                <div className="px-6 py-4">
+                                <div className="px-6 py-2">
                                     {reservationFields.map(({ label, name }) => (
                                         <div key={name} className="mb-4">
                                             <label className="mb-2 block text-sm font-bold text-gray-700">

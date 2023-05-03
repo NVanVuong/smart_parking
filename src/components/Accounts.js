@@ -91,7 +91,7 @@ function Accounts() {
                 handleSave={handleSave}
                 handleDelete={handleDelete}
             ></ModalAccount>
-            <div className="mb-3 flex h-14 items-center justify-between border-b-2 border-gray-200 focus-within:border-b-2 focus-within:border-blue-main focus-within:shadow-md md:mb-5 md:h-16">
+            <div className="mb-3 flex h-14 items-center justify-between border-b-2 border-gray-200 pr-4 focus-within:border-b-2 focus-within:border-blue-main focus-within:shadow-md md:mb-5 md:h-16 md:pr-8">
                 <SearchAdmin
                     searchKeyword={searchKeyword}
                     setSearchKeyword={setSearchKeyword}
@@ -109,7 +109,7 @@ function Accounts() {
                 <Plus size={20} weight="bold" className=" mr-1 drop-shadow-md transition-all duration-500 " />
                 <span className="mr-1 text-sm">Add new</span>
             </button>
-            <div className="mx-4 border border-gray-200 shadow sm:rounded-lg md:ml-8">
+            <div className="mx-4 border border-gray-200 shadow sm:rounded-lg md:mx-8">
                 <table className="w-full divide-y divide-gray-200 ">
                     <thead className="bg-gray-50">
                         <tr className="grid grid-cols-4 md:grid-cols-9">
