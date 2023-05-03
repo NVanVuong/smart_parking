@@ -1,13 +1,10 @@
 import { useState } from 'react';
-import { useAuth } from '~/hooks/auth';
 import { Link, useLocation } from 'react-router-dom';
-import { FaUserAlt, FaCarAlt, FaTicketAlt } from 'react-icons/fa';
-import { BiLogOut } from 'react-icons/bi';
-import smart_parking_rec from '../assets/images/smart_parking_rec.png';
-import smart_parking_square from '../assets/images/smart_parking_square.png';
+import { BiUserPin, BiLogOut } from 'react-icons/bi';
+import { HiOutlineTicket } from 'react-icons/hi';
+import { RiLockPasswordLine } from 'react-icons/ri';
 
-function SideBar() {
-    const auth = useAuth();
+function ProfileBar({ auth }) {
     const location = useLocation();
     const [open, setOpen] = useState(false);
 
@@ -16,13 +13,16 @@ function SideBar() {
             setOpen(!open);
         }
     };
-
     const menus = [
-        { title: 'Accounts', path: '/admin/accounts', icon: <FaUserAlt /> },
-        { title: 'Pariking Sites', path: '/admin/parkingsites', icon: <FaCarAlt /> },
-        { title: 'Reservations', path: '/admin/reservations', icon: <FaTicketAlt /> },
+        { title: 'Information', path: `/profile/${auth?.account?.username}`, icon: <BiUserPin /> },
+        { title: 'Password', path: `/profile/password`, icon: <RiLockPasswordLine /> },
+        {
+            title: 'Reservation',
+            path: `/profile/reservation`,
+            icon: <HiOutlineTicket />,
+        },
         { title: 'Log out', path: '/', icon: <BiLogOut /> },
-    ];
+    ].filter((item) => item);
 
     return (
         <>
@@ -30,48 +30,39 @@ function SideBar() {
                 onClick={handleClick}
                 className={`${
                     open ? 'w-52' : 'w-20'
-                } hidden h-screen grow-0 flex-col justify-between bg-gray-100 p-4 transition-all duration-300 md:flex `}
+                } hidden h-full grow-0 flex-col justify-between  bg-white p-4 transition-all duration-300 md:flex `}
             >
-                <div>
-                    <Link to="/">
-                        <img
-                            src={open ? smart_parking_rec : smart_parking_square}
-                            className={`${open ? 'w-36' : 'w-12'} h-12 cursor-pointer transition duration-300`}
-                            alt="Logo Best Parking"
-                        />
-                    </Link>
-                    <ul className="mt-6">
-                        {menus
-                            .filter((menu) => menu.title !== 'Log out')
-                            .map((menu, index) => {
-                                const isActive = location.pathname === menu.path;
-                                return (
-                                    <Link to={menu.path} key={index}>
-                                        <li
+                <ul>
+                    {menus
+                        .filter((menu) => menu.title !== 'Log out')
+                        .map((menu, index) => {
+                            const isActive = location.pathname === menu.path;
+                            return (
+                                <Link to={menu.path} key={index}>
+                                    <li
+                                        className={`${
+                                            isActive && 'bg-gray-200 shadow-md'
+                                        }  my-2 flex cursor-pointer items-center rounded-lg p-3 text-base font-normal transition duration-300 hover:bg-gray-200`}
+                                    >
+                                        <span
                                             className={`${
-                                                isActive && 'bg-gray-200 shadow-md'
-                                            }  my-2 flex cursor-pointer items-center rounded-lg p-3 text-base font-normal transition duration-300 hover:bg-gray-200`}
+                                                isActive && 'text-blue-main'
+                                            } mr-3 text-2xl transition duration-300`}
                                         >
-                                            <span
-                                                className={`${
-                                                    isActive && 'text-blue-main'
-                                                } mr-3 text-2xl transition duration-300`}
-                                            >
-                                                {menu.icon}
-                                            </span>
-                                            <span
-                                                className={`${isActive && 'font-medium text-blue-main'} ${
-                                                    open ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
-                                                } select-none whitespace-nowrap text-base transition duration-300`}
-                                            >
-                                                {menu.title}
-                                            </span>
-                                        </li>
-                                    </Link>
-                                );
-                            })}
-                    </ul>
-                </div>
+                                            {menu.icon}
+                                        </span>
+                                        <span
+                                            className={`${isActive && 'font-medium text-blue-main'} ${
+                                                open ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
+                                            } select-none whitespace-nowrap text-base transition duration-300`}
+                                        >
+                                            {menu.title}
+                                        </span>
+                                    </li>
+                                </Link>
+                            );
+                        })}
+                </ul>
                 <Link
                     onClick={auth.logout}
                     to="/"
@@ -91,7 +82,7 @@ function SideBar() {
             </div>
             <div
                 onClick={handleClick}
-                className={`h-18 fixed bottom-0 z-50 block w-full items-center justify-between bg-gray-100 py-2 px-4 transition-all duration-300 md:hidden `}
+                className={`h-18 fixed bottom-0 z-50 block w-full items-center justify-between  bg-white py-2 px-4 transition-all duration-300 md:hidden `}
             >
                 <div>
                     <ul className={`flex flex-row justify-around`}>
@@ -129,4 +120,4 @@ function SideBar() {
     );
 }
 
-export default SideBar;
+export default ProfileBar;

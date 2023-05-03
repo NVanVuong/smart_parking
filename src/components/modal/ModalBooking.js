@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-
 import userApi from '~/api/userApi';
 
 export default function ModalBooking({ parkingSite, showModal, setShowModal }) {

@@ -2,10 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { ToastContainer } from 'react-toastify';
 import adminApi, { category } from '~/api/adminApi';
 import userApi from '~/api/userApi';
+import Toggle from '../common/Toggle';
+import ModalBooking from '../modal/ModalBooking';
 import Map from './Map';
 import ParkingList from './ParkingList';
-import ModalBooking from './ModalBooking';
-import Toggle from './Toggle';
 
 function MapContainer() {
     const [parkingSites, setParkingSites] = useState([]);
@@ -98,7 +98,7 @@ function MapContainer() {
 
     return (
         <div className="relative flex max-h-full flex-1 grow flex-col overflow-hidden md:flex-row">
-            <ToastContainer />
+            <ToastContainer autoClose={false} />
             <ModalBooking parkingSite={selectedParkingSite} showModal={showModal} setShowModal={setShowModal} />
             <Toggle toggle={toggle} setToggle={setToggle} />
             <ParkingList

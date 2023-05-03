@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 
-export default function ModalInfo({ showModal, setShowModal, currentAccount, handleSave, exist }) {
+export default function ModalInformation({ showModal, setShowModal, currentAccount, handleSave, exist }) {
     const [error, setError] = useState('');
-    // eslint-disable-next-lines
     // const [errorInput, setErrorInput] = useState('');
     const accountFields = [
         {

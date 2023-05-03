@@ -5,8 +5,8 @@ import { FiPhoneCall } from 'react-icons/fi';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 import adminApi, { category } from '~/api/adminApi';
 import userApi from '~/api/userApi';
-import ModalInfo from './ModalInfo';
-import Loading from './Loading';
+import Loading from '../common/Loading';
+import ModalInformation from '../modal/ModalInformation';
 
 function Information({ auth }) {
     const [account, setAccount] = useState(null);
@@ -37,7 +37,7 @@ function Information({ auth }) {
 
     return !loading ? (
         <div className="mx-auto mt-16 flex flex-col items-center py-10">
-            <ModalInfo
+            <ModalInformation
                 showModal={showModal}
                 currentAccount={account}
                 setShowModal={setShowModal}

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '~/hooks/auth';
+import { BsEyeSlashFill, BsEyeFill } from 'react-icons/bs';
 import apiConfig from '~/api/apiConfig';
 import axios from 'axios';
-import { BsEyeSlashFill, BsEyeFill } from 'react-icons/bs';
 
 function Signup() {
     const navigate = useNavigate();

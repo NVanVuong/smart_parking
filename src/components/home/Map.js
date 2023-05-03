@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { BiCurrentLocation } from 'react-icons/bi';
-import ParkingSiteMarker from './ParkingSiteMarker';
+import ParkingMarker from './ParkingMarker';
 import LocationMarker from './LocationMarker';
-import FilterDistance from './FilterDistance';
+import FilterDistance from '../filter/FilterDistance';
 function Map({
     mapRef,
     toggle,
@@ -55,7 +55,7 @@ function Map({
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 {parkingSitesCurrent.map((parkingSite) => (
-                    <ParkingSiteMarker
+                    <ParkingMarker
                         key={parkingSite._id}
                         toggle={toggle}
                         setToggle={setToggle}

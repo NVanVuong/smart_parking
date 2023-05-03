@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '~/hooks/auth';
 import AccountBadge from './AccountBadge';
-import smart_parking_rec from '../assets/images/smart_parking_rec.png';
+import smart_parking_rec from '~/assets/images/smart_parking_rec.png';
 
 function Header() {
     const auth = useAuth();

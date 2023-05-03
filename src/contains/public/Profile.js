@@ -1,7 +1,6 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
-
-import { Header, Information, Reservation, ProfileBar, Password } from '~/components';
 import { useAuth } from '~/hooks/auth';
+import { Header, Information, Reservation, ProfileBar, Password } from '~/components';
 import { path } from '~/ultils/contains';
 
 function Profile() {
@@ -13,7 +12,6 @@ function Profile() {
                 <ProfileBar auth={auth} />
                 <Routes>
                     <Route path="/" element={<Navigate to={path.INFORMATION} />} />
-                    {/* <Route path={`${path.USER}/` || `${path.ADMIN}/`} element={<Navigate to={path.INFORMATION} />} /> */}
                     <Route path={path.USERNAME} element={<Information auth={auth} />} />
                     <Route path={path.PASSWORD} element={<Password auth={auth} />} />
                     <Route path={path.RESERVATION} element={<Reservation />} />

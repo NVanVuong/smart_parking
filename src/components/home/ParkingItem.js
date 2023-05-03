@@ -1,4 +1,4 @@
-function ParkingListItem({ mapRef, setShowModal, setCurrentFilter, parkingSite, setSelectedParkingSite }) {
+function ParkingItem({ mapRef, setShowModal, setCurrentFilter, parkingSite, setSelectedParkingSite }) {
     const handleDetailClick = (parkingSite) => {
         setCurrentFilter('detail');
         setSelectedParkingSite(parkingSite);
@@ -67,4 +67,4 @@ function ParkingListItem({ mapRef, setShowModal, setCurrentFilter, parkingSite, 
     );
 }
 
-export default ParkingListItem;
+export default ParkingItem;

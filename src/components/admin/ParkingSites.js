@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '~/hooks/auth';
 import { Plus, Trash, Pencil, Info } from '@phosphor-icons/react';
 import adminApi, { category } from '~/api/adminApi';
-import SearchAdmin from './SearchAdmin';
-import Loading from './Loading';
-import ModalParkingSite from './ModalParkingSite';
-import Pagination from './Pagination';
-import AccountBadge from './AccountBadge';
+import Loading from '../common/Loading';
+import Pagination from '../common/Pagination';
+import AccountBadge from '../common/AccountBadge';
+import ModalParkingSite from '../modal/ModalParkingSite';
+import Search from './Search';
 
 function ParkingSites() {
     const auth = useAuth();
@@ -127,7 +127,7 @@ function ParkingSites() {
                 handleDelete={handleDelete}
             ></ModalParkingSite>
             <div className="mb-3 flex h-14 items-center justify-between border-b-2 border-gray-200 pr-4 focus-within:border-b-2 focus-within:border-blue-main focus-within:shadow-md md:mb-5 md:h-16 md:pr-8">
-                <SearchAdmin
+                <Search
                     searchKeyword={searchKeyword}
                     setSearchKeyword={setSearchKeyword}
                     price={price}

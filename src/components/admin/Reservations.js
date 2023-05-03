@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '~/hooks/auth';
 import { Info } from '@phosphor-icons/react';
-import Loading from './Loading';
-import Pagination from './Pagination';
-import SearchAdmin from './SearchAdmin';
-import ModalReservation from './ModalReservation';
-import AccountBadge from './AccountBadge';
-import { category } from '~/api/adminApi';
-import adminApi from '~/api/adminApi';
+import adminApi, { category } from '~/api/adminApi';
+import Loading from '../common/Loading';
+import Pagination from '../common/Pagination';
+import AccountBadge from '../common/AccountBadge';
+import ModalReservation from '../modal/ModalReservation';
+import Search from './Search';
 
-function ReservationAdmin() {
+function Reservations() {
     const auth = useAuth();
     const [reservations, setReservations] = useState([]);
     const [currentReservation, setCurrentReservation] = useState([]);
@@ -54,7 +53,7 @@ function ReservationAdmin() {
                 reservation={currentReservation}
             />
             <div className="mb-3 flex h-14 items-center justify-between border-b-2 border-gray-200 pr-4 focus-within:border-b-2 focus-within:border-blue-main focus-within:shadow-md md:mb-5 md:h-16 md:pr-8">
-                <SearchAdmin
+                <Search
                     searchKeyword={searchKeyword}
                     setSearchKeyword={setSearchKeyword}
                     handleSearch={handleSearch}
@@ -171,4 +170,4 @@ function ReservationAdmin() {
     );
 }
 
-export default ReservationAdmin;
+export default Reservations;

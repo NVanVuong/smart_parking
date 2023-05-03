@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
-import { FaUserCircle } from 'react-icons/fa';
 import { ImProfile } from 'react-icons/im';
+import { FaUserCircle } from 'react-icons/fa';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 
 function AccountBadge({ auth }) {

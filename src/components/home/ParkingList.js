@@ -1,6 +1,6 @@
-import ParkingListItem from './ParkingListItem';
-import ParkingListItemDetail from './ParkingListItemDetail';
-import SearchUser from './SearchUser';
+import Search from './Search';
+import ParkingItem from './ParkingItem';
+import ParkingDetail from './ParkingDetail';
 
 function ParkingList({
     mapRef,
@@ -28,7 +28,7 @@ function ParkingList({
         switch (currentFilter) {
             case 'all':
                 return parkingSites.map((parkingSite) => (
-                    <ParkingListItem
+                    <ParkingItem
                         mapRef={mapRef}
                         key={parkingSite._id}
                         setShowModal={setShowModal}
@@ -40,7 +40,7 @@ function ParkingList({
                 ));
             case 'closest':
                 return parkingSitesNearBy.map((parkingSite) => (
-                    <ParkingListItem
+                    <ParkingItem
                         mapRef={mapRef}
                         key={parkingSite._id}
                         setShowModal={setShowModal}
@@ -53,7 +53,7 @@ function ParkingList({
             case 'cheapest':
                 const sortedParkingSites = parkingSitesCurrent.slice().sort((a, b) => a.price - b.price);
                 return sortedParkingSites.map((parkingSite) => (
-                    <ParkingListItem
+                    <ParkingItem
                         mapRef={mapRef}
                         key={parkingSite._id}
                         setShowModal={setShowModal}
@@ -66,7 +66,7 @@ function ParkingList({
             case 'detail':
                 return (
                     selectedParkingSite && (
-                        <ParkingListItemDetail setShowModal={setShowModal} parkingSite={selectedParkingSite} />
+                        <ParkingDetail setShowModal={setShowModal} parkingSite={selectedParkingSite} />
                     )
                 );
             default:
@@ -80,7 +80,7 @@ function ParkingList({
                 toggle ? 'hidden' : 'block'
             } relative h-full w-full overflow-y-hidden md:block md:w-2/3 xl:w-2/5`}
         >
-            <SearchUser
+            <Search
                 mapRef={mapRef}
                 getParkingNearBy={getParkingNearBy}
                 setCurrentFilter={setCurrentFilter}

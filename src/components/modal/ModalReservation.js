@@ -50,7 +50,6 @@ export default function ModalReservation({ auth, showModal, setShowModal, reserv
             const timestamp = value;
             const date = new Date(timestamp);
             const formattedDate = date.toLocaleString();
-            console.log(typeof formattedDate);
             if (formattedDate === 'Invalid Date') {
                 return '---';
             } else {
