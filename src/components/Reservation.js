@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Info } from '@phosphor-icons/react';
 import Loading from './Loading';
-// import ModalParkingSite from './ModalParkingSite';
 import Pagination from './Pagination';
 import userApi from '~/api/userApi';
 import SearchProfile from './SearchProfile';

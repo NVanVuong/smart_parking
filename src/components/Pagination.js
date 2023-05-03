@@ -22,7 +22,20 @@ function Pagination({ items, totalPages, currentPage, setCurrentPage }) {
 
     const renderPageNumbers = () => {
         const pageNumbers = [];
-        for (let i = 1; i <= totalPages; i++) {
+        const maxPageNumbers = 5;
+        let startPage = 1;
+        let endPage = totalPages;
+        if (totalPages > maxPageNumbers) {
+            if (currentPage <= Math.ceil(maxPageNumbers / 2)) {
+                endPage = maxPageNumbers;
+            } else if (currentPage >= totalPages - Math.floor(maxPageNumbers / 2)) {
+                startPage = totalPages - maxPageNumbers + 1;
+            } else {
+                startPage = currentPage - Math.floor(maxPageNumbers / 2);
+                endPage = currentPage + Math.floor(maxPageNumbers / 2);
+            }
+        }
+        for (let i = startPage; i <= endPage; i++) {
             pageNumbers.push(i);
         }
         return pageNumbers.map((number) => {
