@@ -3,14 +3,15 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '~/hooks/auth';
 import apiConfig from '~/api/apiConfig';
 import axios from 'axios';
+import { BsEyeSlashFill, BsEyeFill } from 'react-icons/bs';
 
 function Signup() {
     const navigate = useNavigate();
     const location = useLocation();
     const auth = useAuth();
-
     const [user, setUser] = useState({ username: '', password: '', confirmPassword: '', phone: '', name: '' });
     const [mes, setMes] = useState({ username: '', phone: '', confimPassword: '' });
+    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
         if (auth.token) navigate('/', { replace: true });
@@ -18,8 +19,6 @@ function Signup() {
     }, [auth.token]);
 
     const redirectPath = location.state?.path || '/';
-    console.log(redirectPath);
-
     const setCookie = (name, value, days) => {
         const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
         const cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
@@ -36,7 +35,6 @@ function Signup() {
             setUser((prevAccount) => ({ ...prevAccount, phone: '' }));
         }
         if (user.password !== user.confirmPassword) {
-            console.log(user.password, user.confirmPassword);
             setUser((prevAccount) => ({ ...prevAccount, password: '' }));
             setUser((prevAccount) => ({ ...prevAccount, confirmPassword: '' }));
             setMes((prev) => ({ ...prev, confimPassword: 'Confirm password is not same as password!!!' }));
@@ -47,29 +45,23 @@ function Signup() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(user);
-        console.log(handleCheckbeforeSubmit());
         if (handleCheckbeforeSubmit())
             axios
                 .post(`${apiConfig.baseURL}auth/signup`, user)
                 .then((response) => {
-                    console.log('Response:', response.headers);
                     const jwt = response.data?.data.token;
-                    console.log(jwt);
                     setCookie('jwt', jwt, 5);
-
                     auth.login(jwt, response.data?.data.user);
                     navigate(redirectPath, { replace: true });
                 })
                 .catch((error) => {
                     if (error?.response?.status === 500) {
-                        console.log(error.response.data);
                         if (error.response.data.message.includes('phone')) {
-                            setMes((prev) => ({ ...prev, phone: 'Phonenumber is duplicate!!!' }));
+                            setMes((prev) => ({ ...prev, phone: 'Phonenumber is duplicate!' }));
                             setUser((prevAccount) => ({ ...prevAccount, phone: '' }));
                         }
                         if (error.response.data.message.includes('username')) {
-                            setMes((prev) => ({ ...prev, username: 'username is duplicate!!!' }));
+                            setMes((prev) => ({ ...prev, username: 'Username is duplicate!' }));
                             setUser((prevAccount) => ({ ...prevAccount, username: '' }));
                         }
                     } else {
@@ -134,13 +126,13 @@ function Signup() {
                 </div>
                 <p className="pt-4 text-sm text-red-500">{mes.username}</p>
 
-                <div className="mb-2">
+                <div className="relative mb-2">
                     <label htmlFor="password" className="block text-sm font-semibold text-gray-800">
                         Password
                     </label>
                     <input
                         required
-                        type="password"
+                        type={showPassword ? 'text' : 'password'}
                         onFocus={() => setMes('')}
                         value={user.password}
                         onChange={(e) => {
@@ -148,14 +140,29 @@ function Signup() {
                         }}
                         className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-blue-main  focus:outline-none focus:ring focus:ring-blue-main focus:ring-opacity-40"
                     />
+                    {!showPassword ? (
+                        <BsEyeSlashFill
+                            onClick={() => setShowPassword(!showPassword)}
+                            className={`${
+                                user.password === '' && 'hidden'
+                            } absolute bottom-[11px] right-3 cursor-pointer text-gray-500`}
+                        />
+                    ) : (
+                        <BsEyeFill
+                            onClick={() => setShowPassword(!showPassword)}
+                            className={`${
+                                user.password === '' && 'hidden'
+                            } absolute bottom-[11px] right-3 cursor-pointer text-gray-500`}
+                        />
+                    )}
                 </div>
-                <div className="mb-2">
+                <div className="relative mb-2">
                     <label htmlFor="password" className="block text-sm font-semibold text-gray-800">
                         Confirm Password
                     </label>
                     <input
                         required
-                        type="password"
+                        type={showPassword ? 'text' : 'password'}
                         onFocus={() => setMes('')}
                         value={user.confirmPassword}
                         onChange={(e) => {
@@ -163,6 +170,21 @@ function Signup() {
                         }}
                         className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-blue-main  focus:outline-none focus:ring focus:ring-blue-main focus:ring-opacity-40"
                     />
+                    {!showPassword ? (
+                        <BsEyeSlashFill
+                            onClick={() => setShowPassword(!showPassword)}
+                            className={`${
+                                user.confirmPassword === '' && 'hidden'
+                            } absolute bottom-3 right-3 cursor-pointer text-gray-500`}
+                        />
+                    ) : (
+                        <BsEyeFill
+                            onClick={() => setShowPassword(!showPassword)}
+                            className={`${
+                                user.confirmPassword === '' && 'hidden'
+                            } absolute bottom-3 right-3 cursor-pointer text-gray-500`}
+                        />
+                    )}
                 </div>
                 <p className="pt-4 text-sm text-red-500">{mes.confimPassword}</p>
                 <div className="mt-2">
