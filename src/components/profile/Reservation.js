@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Info } from '@phosphor-icons/react';
-import Loading from './Loading';
-import Pagination from './Pagination';
 import userApi from '~/api/userApi';
-import SearchProfile from './SearchProfile';
-import ModalReservation from './ModalReservation';
+import Loading from '../common/Loading';
+import Pagination from '../common/Pagination';
+import ModalReservation from '../modal/ModalReservation';
+import SearchProfile from './Search';
 
 function Reservation() {
     const [reservations, setReservations] = useState([]);

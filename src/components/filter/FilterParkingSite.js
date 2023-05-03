@@ -60,7 +60,7 @@ export default function FilterParkingSite({ showFilter, setShowFilter, price, se
                 <SlidersHorizontal size={24} weight="bold" />
             </button>
             {showFilter && (
-                <div className="absolute -left-40 z-[100] mt-2 w-[380px] rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:left-[-458px] md:w-[500px]">
+                <div className="absolute -left-32 z-[100] mt-2 w-[380px] rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none md:left-[-458px] md:w-[500px]">
                     <div className="mt-3 flex h-16 w-full items-center justify-between px-4">
                         <span className="w-24 text-sm">Price: </span>
                         <div className="flex w-full flex-col">

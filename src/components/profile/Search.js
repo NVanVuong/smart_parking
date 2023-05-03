@@ -1,6 +1,6 @@
 import { MagnifyingGlass, X } from '@phosphor-icons/react';
 
-function SearchProfile({ searchKeyword, setSearchKeyword, handleSearch }) {
+function Search({ searchKeyword, setSearchKeyword, handleSearch }) {
     const handleInputChange = (e) => {
         if (e.target.value === '') {
             setSearchKeyword('');
@@ -62,4 +62,4 @@ function SearchProfile({ searchKeyword, setSearchKeyword, handleSearch }) {
     );
 }
 
-export default SearchProfile;
+export default Search;

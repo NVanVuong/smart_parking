@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import userApi from '../api/userApi';
-import Loading from './Loading';
 import { HiOutlineCheckCircle, HiOutlineXCircle } from 'react-icons/hi';
 import { BsEyeSlashFill, BsEyeFill } from 'react-icons/bs';
+import userApi from '../../api/userApi';
+import Loading from '../common/Loading';
 
 export default function Password({ auth }) {
     const [password, setPassword] = useState({
@@ -47,7 +47,7 @@ export default function Password({ auth }) {
     };
 
     return !loading ? (
-        <div className="mt-16 h-fit w-full px-4 md:mx-auto md:w-1/3 lg:w-1/4">
+        <div className="mt-16 h-fit w-full px-4 sm:mx-auto sm:w-1/2 lg:w-1/3">
             <h2 className="mb-4 text-center text-xl font-medium text-gray-500">Change Password</h2>
             {error && (
                 <div

@@ -1,7 +1,7 @@
 import { Marker, Popup } from 'react-leaflet';
-import { parkingSiteMarker, soldOutMarker } from '../assets/icons/index';
+import { parkingSiteMarker, soldOutMarker } from '../../assets/icons/index';
 
-function ParkingSiteMarker({ setShowModal, toggle, setToggle, setCurrentFilter, parkingSite, setSelectedParkingSite }) {
+function ParkingMarker({ setShowModal, toggle, setToggle, setCurrentFilter, parkingSite, setSelectedParkingSite }) {
     const handleDetailClick = (parkingSite) => {
         setSelectedParkingSite(parkingSite);
         setToggle(!toggle);
@@ -65,4 +65,4 @@ function ParkingSiteMarker({ setShowModal, toggle, setToggle, setCurrentFilter, 
     );
 }
 
-export default ParkingSiteMarker;
+export default ParkingMarker;

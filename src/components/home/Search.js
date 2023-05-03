@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { MapPin, MagnifyingGlass, X } from '@phosphor-icons/react';
 
-function SearchUser({
+function Search({
     mapRef,
     getParkingNearBy,
     distance,
@@ -101,4 +101,4 @@ function SearchUser({
     );
 }
 
-export default SearchUser;
+export default Search;

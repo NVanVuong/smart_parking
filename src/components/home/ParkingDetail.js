@@ -4,7 +4,7 @@ import { FaChargingStation, FaCarAlt } from 'react-icons/fa';
 import { MdOutlineMobileFriendly } from 'react-icons/md';
 import { AiOutlineScan } from 'react-icons/ai';
 
-function ParkingListItemDetail({ setShowModal, parkingSite, setSelectedParkingSite }) {
+function ParkingDetail({ setShowModal, parkingSite, setSelectedParkingSite }) {
     const handleBookClick = (parkingSite) => {
         setShowModal(true);
         setSelectedParkingSite(parkingSite);
@@ -104,4 +104,4 @@ function ParkingListItemDetail({ setShowModal, parkingSite, setSelectedParkingSi
     );
 }
 
-export default ParkingListItemDetail;
+export default ParkingDetail;

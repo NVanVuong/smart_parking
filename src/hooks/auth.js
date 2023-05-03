@@ -16,13 +16,11 @@ export const AuthProvider = ({ children }) => {
             var name = parts[0];
             var value = parts[1];
             if (name === 'jwt') {
-                console.log(value);
                 setToken(value);
 
                 axios
                     .post('https://pbl5-parking-api.onrender.com/decode', { token: value })
                     .then((response) => {
-                        console.log(response?.data?.data?.account);
                         setAccount(response?.data?.data?.account);
                     })
                     .catch((error) => {

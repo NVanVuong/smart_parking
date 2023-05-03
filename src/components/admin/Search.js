@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { MagnifyingGlass, X } from '@phosphor-icons/react';
-import FilterAccount from './FilterAccount';
-import FilterParkingSite from './FilterParkingSite';
-import smart_parking_square from '../assets/images/smart_parking_square.png';
+import FilterAccount from '../filter/FilterAccount';
+import FilterParkingSite from '../filter/FilterParkingSite';
+import smart_parking_square from '~/assets/images/smart_parking_square.png';
 
-function SearchAdmin({
+function Search({
     searchKeyword,
     setSearchKeyword,
     type,
@@ -110,4 +110,4 @@ function SearchAdmin({
     );
 }
 
-export default SearchAdmin;
+export default Search;

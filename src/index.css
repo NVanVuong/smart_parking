@@ -10,6 +10,7 @@
 
 :root {
     --toastify-color-success: #2ab7df !important;
+    --toastify-font-family: Montserrat, sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -17,7 +18,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply rounded-md bg-[rgba(42,184,223,0.7)];
+    @apply rounded-md bg-gray-300 bg-opacity-70;
 }
 
 @layer base {
@@ -81,4 +82,18 @@ input[type='search'] {
 
 .mq-dropdown-menu {
     @apply mt-1 w-full rounded-md bg-white shadow-md !important;
+}
+
+.Toastify__toast-container {
+    @apply w-72 text-sm md:w-80 !important;
+}
+
+.Toastify__toast-container--top-right {
+    @apply top-28 right-4 md:top-20 !important;
+}
+
+@media only screen and (max-width: 480px) {
+    .Toastify__toast-container {
+        @apply left-auto  !important;
+    }
 }

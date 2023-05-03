@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Marker, Popup, useMapEvents, Circle } from 'react-leaflet';
-import { locationMarker } from '../assets/icons/index';
+import { locationMarker } from '../../assets/icons/index';
 function LocationMarker({ position, setPosition, center, setCenter, getParkingNearBy, distance, showRadius }) {
     useEffect(() => {
         map.locate();
