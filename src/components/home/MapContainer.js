@@ -98,7 +98,7 @@ function MapContainer() {
 
     return (
         <div className="relative flex max-h-full flex-1 grow flex-col overflow-hidden md:flex-row">
-            <ToastContainer autoClose={false} />
+            <ToastContainer />
             <ModalBooking parkingSite={selectedParkingSite} showModal={showModal} setShowModal={setShowModal} />
             <Toggle toggle={toggle} setToggle={setToggle} />
             <ParkingList
