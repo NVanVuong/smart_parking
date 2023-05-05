@@ -7,4 +7,4 @@
 3. Make sure to allow the website to use your location in order to find parking sites near you.
    If your browser prompts you to allow or deny location access, please select "Allow".
 
-<img src="./public/smartparkingpbl5-netlify-app.png" />
+<img src="./public/Smart_Parking_Demo.png" />
