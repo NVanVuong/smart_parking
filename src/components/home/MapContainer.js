@@ -19,6 +19,7 @@ function MapContainer() {
     const [selectedParkingSite, setSelectedParkingSite] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [toggle, setToggle] = useState(true);
+    const [loading, setLoading] = useState(true);
     const mapRef = useRef(null);
 
     useEffect(() => {
@@ -50,6 +51,7 @@ function MapContainer() {
         });
         setParkingSites(newParkingSites);
         setParkingSitesCurrent(newParkingSites);
+        setLoading(false);
     };
 
     const getParkingNearBy = async (position, distance) => {
@@ -106,6 +108,7 @@ function MapContainer() {
                 toggle={toggle}
                 setCenter={setCenter}
                 distance={distance}
+                loading={loading}
                 searchKeyword={searchKeyword}
                 handleSearch={handleSearch}
                 setSearchKeyword={setSearchKeyword}

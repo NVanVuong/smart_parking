@@ -53,11 +53,7 @@ function Reservations() {
                 reservation={currentReservation}
             />
             <div className="mb-3 flex h-14 items-center justify-between border-b-2 border-gray-200 pr-4 focus-within:border-b-2 focus-within:border-blue-main focus-within:shadow-md md:mb-5 md:h-16 md:pr-8">
-                <Search
-                    searchKeyword={searchKeyword}
-                    setSearchKeyword={setSearchKeyword}
-                    handleSearch={handleSearch}
-                />
+                <Search searchKeyword={searchKeyword} setSearchKeyword={setSearchKeyword} handleSearch={handleSearch} />
                 <span className="mx-2 h-9 border md:mx-4"></span>
                 <AccountBadge auth={auth} />
             </div>
