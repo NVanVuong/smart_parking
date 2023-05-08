@@ -5,7 +5,7 @@ import userApi from '~/api/userApi';
 import Toggle from '../common/Toggle';
 import ModalBooking from '../modal/ModalBooking';
 import Map from './Map';
-import ParkingList from './ParkingList';
+import ParkingWrapper from './ParkingWrapper';
 
 function MapContainer() {
     const [parkingSites, setParkingSites] = useState([]);
@@ -101,7 +101,7 @@ function MapContainer() {
             <ToastContainer />
             <ModalBooking parkingSite={selectedParkingSite} showModal={showModal} setShowModal={setShowModal} />
             <Toggle toggle={toggle} setToggle={setToggle} />
-            <ParkingList
+            <ParkingWrapper
                 mapRef={mapRef}
                 toggle={toggle}
                 setCenter={setCenter}
