@@ -1,10 +1,7 @@
+import Loading from './Loading';
 import Search from './Search';
-// import ParkingList from './ParkingList';
 import ParkingNav from './ParkingNav';
-
-import { lazy, Suspense } from 'react';
-import Loading from '../common/Loading';
-const ParkingList = lazy(() => import('./ParkingList'));
+import ParkingList from './ParkingList';
 
 function ParkingWrapper({
     mapRef,
@@ -19,6 +16,7 @@ function ParkingWrapper({
     parkingSites,
     getParkingNearBy,
     distance,
+    loading,
     parkingSitesNearBy,
     parkingSitesCurrent,
     selectedParkingSite,
@@ -28,7 +26,7 @@ function ParkingWrapper({
         <div
             className={`${
                 toggle ? 'hidden' : 'block'
-            } relative h-full w-full overflow-y-hidden md:block md:w-2/3 xl:w-2/5`}
+            } relative h-full w-full overflow-y-hidden pb-28 md:block md:w-2/3 xl:w-2/5`}
         >
             <Search
                 mapRef={mapRef}
@@ -41,7 +39,7 @@ function ParkingWrapper({
                 handleSearch={handleSearch}
             />
             <ParkingNav currentFilter={currentFilter} setCurrentFilter={setCurrentFilter} />
-            <Suspense fallback={<Loading />}>
+            {!loading ? (
                 <ParkingList
                     mapRef={mapRef}
                     setShowModal={setShowModal}
@@ -53,7 +51,9 @@ function ParkingWrapper({
                     selectedParkingSite={selectedParkingSite}
                     setSelectedParkingSite={setSelectedParkingSite}
                 />
-            </Suspense>
+            ) : (
+                <Loading />
+            )}
         </div>
     );
 }
