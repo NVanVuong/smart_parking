@@ -8,7 +8,6 @@ function ParkingDetail({ setShowModal, parkingSite, setSelectedParkingSite }) {
     const handleBookClick = (parkingSite) => {
         setShowModal(true);
         setSelectedParkingSite(parkingSite);
-        console.log('click book detail');
     };
 
     return (
