@@ -62,7 +62,7 @@ function ParkingList({
         }
     };
 
-    return <div className="h-full overflow-y-auto pb-28">{renderParkingListItems()}</div>;
+    return <div className="h-full overflow-y-auto">{renderParkingListItems()}</div>;
 }
 
 export default ParkingList;
